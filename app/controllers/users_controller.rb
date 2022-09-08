@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: :edit
 
   # GET /users or /users.json
   def index
     @users = User.all
+    # flash[:notice] = 'hi'
   end
 
   # GET /users/1 or /users/1.json

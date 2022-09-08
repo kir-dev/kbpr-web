@@ -8,6 +8,8 @@
     <%= link_to 'New user', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+  <%= button_to "Sign in with Auth.sch", user_authsch_omniauth_authorize_path, data: {turbo: false} %>
+
   <div id="users" class="min-w-full">
     <%= render @users %>
   </div>
