@@ -12,7 +12,7 @@
 
 body {
   background-color: theme('colors.gb-dark');
-  color: theme('colors.text-light') ;
+  color: theme('colors.light');
 }
 
 
