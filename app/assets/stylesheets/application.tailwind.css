@@ -21,6 +21,10 @@
   .mobile-nav-item {
     @apply p-4 font-bold bg-secondary w-full text-center;
   }
+
+  .footer-image {
+    @apply w-16 md:w-28;
+  }
 }
 
 body {
