@@ -14,12 +14,17 @@
   }
 
   .nav-item {
-    @apply p-4 font-bold hidden md:block;
+    @apply p-4 font-bold
+    hidden md:block
+    ;
+  }
+  .mobile-nav-item {
+    @apply p-4 font-bold bg-secondary w-full text-center;
   }
 }
 
 body {
-  background-color: theme('colors.gb-dark');
+  background-color: theme('colors.bg-dark');
   color: theme('colors.light');
 }
 

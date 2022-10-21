@@ -11,7 +11,7 @@
   <%= javascript_importmap_tags %>
 </head>
 <body>
-<div class="max-w-5xl mx-auto">
+<div data-controller="navbar" class="max-w-5xl mx-auto">
   <nav class="flex justify-end gap-x-8 p-4">
     <%= image_tag "kbpr-logo.svg", class: 'mr-auto' %>
     <%= link_to "Rendelés leadás", root_path, class: 'nav-item' %>
@@ -19,8 +19,26 @@
     <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
     <%= link_to "Rólunk", root_path, class: 'nav-item' %>
     <%= link_to "Admin panel", root_path, class: 'nav-item' %>
-    <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
+    <div data-action="click->navbar#open">
+      <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
+    </div>
   </nav>
+  <div data-navbar-target="mobileNavPanel"
+       class="fixed top-4 bottom-4 left-4 right-4 bg-bg-dark p-4 hidden">
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex w-full justify-between items-center">
+        <%= image_tag "kbpr-logo.svg", class: '' %>
+        <div data-action="click->navbar#close" >
+          <%= image_tag "nav-close-icon.svg", class: '' %>
+        </div>
+      </div>
+      <%= link_to "Rendelés leadás", root_path, class: 'mobile-nav-item' %>
+      <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
+      <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
+      <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
+      <%= link_to "Admin panel", root_path, class: 'mobile-nav-item' %>
+    </div>
+  </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
