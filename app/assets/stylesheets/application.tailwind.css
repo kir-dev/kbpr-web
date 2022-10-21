@@ -12,6 +12,10 @@
   .btn-outline {
     @apply bg-transparent text-light;
   }
+
+  .nav-item {
+    @apply p-4 font-bold hidden md:block;
+  }
 }
 
 body {
