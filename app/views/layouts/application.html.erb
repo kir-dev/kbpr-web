@@ -11,40 +11,66 @@
   <%= javascript_importmap_tags %>
 </head>
 <body>
-<div data-controller="navbar" class="max-w-5xl mx-auto">
-  <nav class="flex justify-end gap-x-8 p-4">
-    <%= image_tag "kbpr-logo.svg", class: 'mr-auto' %>
-    <%= link_to "Rendelés leadás", root_path, class: 'nav-item' %>
-    <%= link_to "KWC", root_path, class: 'nav-item' %>
-    <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
-    <%= link_to "Rólunk", root_path, class: 'nav-item' %>
-    <%= link_to "Admin panel", root_path, class: 'nav-item' %>
-    <div data-action="click->navbar#open">
-      <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
-    </div>
-  </nav>
-  <div data-navbar-target="mobileNavPanel"
-       class="fixed top-4 bottom-4 left-4 right-4 bg-bg-dark p-4 hidden">
-    <div class="flex flex-col items-center gap-4">
-      <div class="flex w-full justify-between items-center">
-        <%= image_tag "kbpr-logo.svg", class: '' %>
-        <div data-action="click->navbar#close" >
-          <%= image_tag "nav-close-icon.svg", class: '' %>
+<div id="page-container" class="relative min-h-screen">
+  <div id="content-wrap" class="pb-48">
+    <div data-controller="navbar" class="max-w-5xl mx-auto">
+      <nav class="flex justify-end gap-x-8 p-4">
+        <%= image_tag "kbpr-logo.svg", class: 'mr-auto' %>
+        <%= link_to "Rendelés leadás", root_path, class: 'nav-item' %>
+        <%= link_to "KWC", root_path, class: 'nav-item' %>
+        <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
+        <%= link_to "Rólunk", root_path, class: 'nav-item' %>
+        <%= link_to "Admin panel", root_path, class: 'nav-item' %>
+        <div data-action="click->navbar#open">
+          <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
+        </div>
+      </nav>
+      <div data-navbar-target="mobileNavPanel"
+           class="fixed top-4 bottom-4 left-4 right-4 bg-bg-dark p-4 hidden">
+        <div class="flex flex-col items-center gap-4">
+          <div class="flex w-full justify-between items-center">
+            <%= image_tag "kbpr-logo.svg", class: '' %>
+            <div data-action="click->navbar#close">
+              <%= image_tag "nav-close-icon.svg", class: '' %>
+            </div>
+          </div>
+          <%= link_to "Rendelés leadás", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "Admin panel", root_path, class: 'mobile-nav-item' %>
         </div>
       </div>
-      <%= link_to "Rendelés leadás", root_path, class: 'mobile-nav-item' %>
-      <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
-      <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
-      <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
-      <%= link_to "Admin panel", root_path, class: 'mobile-nav-item' %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <main class="mt-28 px-5 flex">
+        <%= yield %>
+      </main>
     </div>
   </div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <main class="mt-28 px-5 flex">
-    <%= yield %>
-  </main>
+  <footer class="bg-secondary absolute w-full bottom-0 h-48">
+    <div class="flex flex-col items-center max-w-5xl mx-auto mt-2">
+      <div>
+        <h2 class="text-center text-2xl font-bold">KBPR Csoport</h2>
+        <h3 class="text-center text-xl">kbpr.sch.bme.hu</h3>
+      </div>
+      <div class="flex items-center justify-around w-full">
+      <a href="https://kir-dev.hu/">
+        <%= image_tag 'kir-dev-logo.svg', class: 'footer-image' %>
+      </a>
+      <a href="https://schdesign.hu/">
+        <%= image_tag 'schdesign-logo.svg', class: 'footer-image' %>
+      </a>
+      <a href="https://sch.bme.hu/">
+        <%= image_tag 'schonherz-logo.svg', class: 'footer-image' %>
+      </a>
+      <a href="/">
+        <%= image_tag 'kbpr-logo.svg', class: 'footer-image' %>
+      </a>
+    </div>
+    </div>
+  </footer>
 </div>
 </body>
 </html>
