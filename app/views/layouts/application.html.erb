@@ -10,13 +10,23 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
-
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="max-w-5xl mx-auto">
+  <nav class="flex justify-end gap-x-8 p-4">
+    <%= image_tag "kbpr-logo.svg", class: 'mr-auto' %>
+    <%= link_to "Rendelés leadás", root_path, class: 'nav-item' %>
+    <%= link_to "KWC", root_path, class: 'nav-item' %>
+    <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
+    <%= link_to "Rólunk", root_path, class: 'nav-item' %>
+    <%= link_to "Admin panel", root_path, class: 'nav-item' %>
+    <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
+  </nav>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<main class="container mx-auto mt-28 px-5 flex">
-  <%= yield %>
-</main>
+  <main class="mt-28 px-5 flex">
+    <%= yield %>
+  </main>
+</div>
 </body>
 </html>
