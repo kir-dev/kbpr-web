@@ -1,4 +1,4 @@
-<div id="<%= dom_id article %>">
+<div id="<%= dom_id article %>" class="space-y-4">
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= article.title %>
@@ -10,8 +10,8 @@
   </p>
 
   <% if action_name != "show" %>
-      <%= link_to "Show this article", article, class: "rounded-lg py-4 px-5 bg-primary text-dark inline-block font-large" %>
-    <%= link_to 'Edit this article', edit_article_path(article), class: "border-4 border-primary rounded-lg py-3 m-2 px-5 inline-block font-medium" %>
+    <%= link_to "Show this article", article, class: "btn" %>
+    <%= link_to 'Edit this article', edit_article_path(article), class: "btn btn-outline" %>
     <hr class="mt-6">
   <% end %>
 </div>
