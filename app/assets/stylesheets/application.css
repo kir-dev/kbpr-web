@@ -14,3 +14,6 @@
  *= require_self
  */
 
+/* fix trix tailwind conflict */
+trix-editor ul { list-style-type: disc !important; margin-left: 1rem !important; }
+trix-editor ol { list-style-type: decimal !important; margin-left: 1rem !important; }
