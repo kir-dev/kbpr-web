@@ -1,0 +1,66 @@
+hu:
+  activerecord:
+    models:
+      action_text/encrypted_rich_text: Műveleti szöveg/titkosított formázott szöveg  #g
+      action_text/rich_text: Akciószöveg/rich text  #g
+      active_storage/attachment: Aktív tárolás/csatolás  #g
+      active_storage/blob: Aktív tárhely/blob  #g
+      active_storage/variant_record: Aktív tárhely/változat rekord  #g
+      article: Hír  #g
+      user: Felhasználó  #g
+
+    attributes:
+      action_text/encrypted_rich_text:
+        body: Test  #g
+        embeds_attachments: Mellékletek beágyazása  #g
+        embeds_blobs: Blobokat ágyaz be  #g
+        name: Név  #g
+        record: :activerecord.models.record  #g
+        record_type: Rekord típusa  #g
+
+      action_text/rich_text:
+        body: Test  #g
+        embeds_attachments: Mellékletek beágyazása  #g
+        embeds_blobs: Blobokat ágyaz be  #g
+        name: Név  #g
+        record: :activerecord.models.record  #g
+        record_type: Rekord típusa  #g
+
+      active_storage/attachment:
+        blob: :activerecord.models.blob  #g
+        name: Név  #g
+        record: :activerecord.models.record  #g
+        record_type: Rekord típusa  #g
+
+      active_storage/blob:
+        attachments: Mellékletek  #g
+        byte_size: Bájtméret  #g
+        checksum: Ellenőrző összeg  #g
+        content_type: Tartalom típus  #g
+        filename: Fájl név  #g
+        key: Kulcs  #g
+        metadata: Metaadatok  #g
+        preview_image_attachment: :activerecord.models.preview_image_attachment  #g
+        preview_image_blob: :activerecord.models.preview_image_blob  #g
+        service_name: Szolgáltatás neve  #g
+        variant_records: Változatos rekordok  #g
+
+      active_storage/variant_record:
+        blob: :activerecord.models.blob  #g
+        image_attachment: :activerecord.models.image_attachment  #g
+        image_blob: :activerecord.models.image_blob  #g
+        variation_digest: Variációs emésztés  #g
+
+      article:
+        rich_text_content: :activerecord.models.rich_text_content  #g
+        title: Cím  #g
+        content: Tartalom
+
+      user:
+        admin: Admin  #g
+        email: Email  #g
+        encrypted_password: Titkosított jelszó  #g
+        name: Név  #g
+        provider: Szolgáltató  #g
+        remember_created_at: 'Emlékezz létrehozva:'  #g
+        uid: Uid  #g
