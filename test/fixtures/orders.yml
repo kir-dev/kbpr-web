@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  link: MyString
+  print_quantity: 1
+  paper_size: MyString
+  comment: MyText
+  sticker: false
+  laminated: false
+  printed_by_me: false
+
+two:
+  user: two
+  link: MyString
+  print_quantity: 1
+  paper_size: MyString
+  comment: MyText
+  sticker: false
+  laminated: false
+  printed_by_me: false
