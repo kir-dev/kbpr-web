@@ -18,7 +18,7 @@
         <%= link_to root_path, class: 'mr-auto' do %>
           <%= image_tag "kbpr-logo.svg" %>
         <% end %>
-        <%= link_to "Rendelés leadás", root_path, class: 'nav-item' %>
+        <%= link_to "Rendelés leadás", new_order_path, class: 'nav-item' %>
         <%= link_to "KWC", root_path, class: 'nav-item' %>
         <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
         <%= link_to "Rólunk", root_path, class: 'nav-item' %>
@@ -42,7 +42,7 @@
               <%= image_tag "nav-close-icon.svg", class: '' %>
             </div>
           </div>
-          <%= link_to "Rendelés leadás", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "Rendelés leadás", new_order_path, class: 'mobile-nav-item' %>
           <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>

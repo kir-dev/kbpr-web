@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
-
+  before_action :require_login, only: %i[ show edit update destroy create new ]
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(order_params.merge({user_id: current_user.id}))
 
     respond_to do |format|
       if @order.save
@@ -65,6 +65,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated, :printed_by_me)
+      params.require(:order).permit(:group_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated, :printed_by_me)
     end
 end
