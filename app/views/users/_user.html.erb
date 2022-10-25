@@ -1,27 +1,22 @@
-<div id="<%= dom_id user %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= user.name %>
-  </p>
+<div id="<%= dom_id user %>" class="flex items-center content-space justify-between border-white border-b-2">
+  <div>
+    <p class="my-5">
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.name') %>:</strong>
+      <%= user.name %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Admin:</strong>
-    <%= user.admin %>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Admin:</strong>
+      <%= user.admin ? 'Igen' : 'Nem' %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= user.email %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Authsch:</strong>
-    <%= user.authsch_id %>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.email') %>:</strong>
+      <%= user.email %>
+    </p>
+  </div>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this user", user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this user', edit_user_path(user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+    <%= link_to "Részletek", user, class: "btn" %>
   <% end %>
 </div>

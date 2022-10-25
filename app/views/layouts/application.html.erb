@@ -23,6 +23,12 @@
         <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
         <%= link_to "Rólunk", root_path, class: 'nav-item' %>
         <%= link_to "Admin panel", root_path, class: 'nav-item' %>
+        <%= link_to "Felhasználók", users_path, class: 'nav-item' %>
+        <% if current_user.present? %>
+          <%= link_to 'Profil', user_path(current_user), class: 'nav-item'%>
+        <% else %>
+          <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'nav-item' %>
+        <% end %>
         <div data-action="click->navbar#open">
           <%= image_tag "nav-icon.svg", class: 'md:hidden p-4' %>
         </div>
@@ -41,6 +47,12 @@
           <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Admin panel", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "Felhasználók", users_path, class: 'mobile-nav-item' %>
+          <% if current_user.present? %>
+            <%= link_to 'Profil', user_path(current_user), class: 'mobile-nav-item'%>
+          <% else %>
+            <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'mobile-nav-item' %>
+          <% end %>
         </div>
       </div>
       <p class="notice"><%= notice %></p>
