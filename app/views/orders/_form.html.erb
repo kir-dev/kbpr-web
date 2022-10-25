@@ -13,22 +13,22 @@
 
   <div class="my-5">
     <%= form.label :group %>
-    <%= form.text_field :link, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :group_id, Group.all.map{|group| [group.name, group.id]}, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :link %>
-    <%= form.text_field :link, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :link, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :print_quantity %>
-    <%= form.number_field :print_quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :print_quantity, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :paper_size %>
-    <%= form.text_field :paper_size, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :paper_size, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -48,7 +48,7 @@
 
   <div class="my-5">
     <%= form.label :printed_by_me %>
-    <%= form.check_box :printed_by_me, class: "block mt-2 h-5 w-5" %>
+    <%= form.check_box :printed_by_me, class: "text-bg-dark block mt-2 h-5 w-5" %>
   </div>
 
   <div class="inline">

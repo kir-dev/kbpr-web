@@ -8,6 +8,8 @@ hu:
       active_storage/variant_record: Aktív tárhely/változat rekord  #g
       article: Hír  #g
       user: Felhasználó  #g
+      group: Csoport  #g
+      order: Rendelés  #g
 
     attributes:
       action_text/encrypted_rich_text:
@@ -64,3 +66,17 @@ hu:
         provider: Szolgáltató  #g
         remember_created_at: 'Emlékezz létrehozva:'  #g
         uid: Uid  #g
+
+      group:
+        name: Név  #g
+
+      order:
+        comment: Megjegyzés  #g
+        laminated: Laminált  #g
+        link: Plakát / szórólap linkje  #g
+        paper_size: Papírméret  #g
+        print_quantity: Nyomtatási mennyiség  #g
+        printed_by_me: Én szeretném nyomtatni  #g
+        sticker: Matrica  #g
+        user: :activerecord.models.user #g
+        group: Kör
