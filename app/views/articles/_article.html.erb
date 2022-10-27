@@ -1,17 +1,7 @@
-<div id="<%= dom_id article %>" class="space-y-4">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= article.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= article.content %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this article", article, class: "btn" %>
-    <%= link_to 'Edit this article', edit_article_path(article), class: "btn btn-outline" %>
-    <hr class="mt-6">
-  <% end %>
+<div id="<%= dom_id article %>">
+<div class="px-5 bg-secondary shadow rounded-lg max-w-full mb-12" >
+  <span class="block text-3xl font-bold text-white pt-6">Loyce Kuvalis</span>
+  <span class="block text-sm text-white font-light leading-snug py-2">16 December at 08:25</span>
+  <p class="text-white leading-snug md:leading-normal pb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
 </div>
