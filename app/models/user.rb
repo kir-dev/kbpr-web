@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :omniauthable, omniauth_providers: [:authsch]
-
+  has_many :orders
   def self.from_omniauth(access_token)
     data = access_token.extra.raw_info
     user = User.find_by(authsch_id: data.internal_id,)
