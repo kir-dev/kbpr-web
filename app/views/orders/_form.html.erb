@@ -18,40 +18,40 @@
 
   <div class="my-5">
     <%= form.label :link %>
-    <%= form.text_field :link, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :print_quantity %>
-    <%= form.number_field :print_quantity, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.number_field :print_quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :paper_size %>
-    <%= form.text_field :paper_size, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :paper_size, Order.paper_sizes.map{|k,v| [k.upcase, v]}, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :comment %>
-    <%= form.text_area :comment, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_area :comment, rows: 4, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :sticker %>
-    <%= form.check_box :sticker, class: "block mt-2 h-5 w-5" %>
+    <%= form.check_box :sticker, class: "checkbox" %>
   </div>
 
   <div class="my-5">
     <%= form.label :laminated %>
-    <%= form.check_box :laminated, class: "block mt-2 h-5 w-5" %>
+    <%= form.check_box :laminated, class: "checkbox" %>
   </div>
 
   <div class="my-5">
     <%= form.label :printed_by_me %>
-    <%= form.check_box :printed_by_me, class: "text-bg-dark block mt-2 h-5 w-5" %>
+    <%= form.check_box :printed_by_me, class: "checkbox" %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "btn w-full mt-4" %>
   </div>
 <% end %>
