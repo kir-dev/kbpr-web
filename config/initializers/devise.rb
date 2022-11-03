@@ -275,7 +275,8 @@ Devise.setup do |config|
   config.omniauth :authsch,
                   Rails.application.credentials.authsch_client_id,
                   Rails.application.credentials.authsch_client_secret,
-                  scope: 'basic mail displayName'
+                  scope: 'basic mail displayName',
+                  provider_ignores_state: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

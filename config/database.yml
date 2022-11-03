@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
+  host: postgres
   database: kbpr_web_production
   username: kbpr_web
-  password: <%= ENV["KBPR_WEB_DATABASE_PASSWORD"] %>
+  password: <%= Rails.application.credentials.postgres_password %>
+

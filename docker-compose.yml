@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - 3003:3000
+    environment:
+      - RAILS_ENV=production
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - kbpr_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=kbpr_web
+    env_file:
+      - .postgres_password
+volumes:
+  kbpr_db:
+    external: true
