@@ -1,4 +1,4 @@
-<%= form_with(model: order, class: "contents") do |form| %>
+<%= form_with(model: order, class: "contents", builder: CustomFormBuilder) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="my-5">
     <%= form.label :group %>
-    <%= form.select :group_id, Group.all.map{|group| [group.name, group.id]}, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] }, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -28,7 +28,7 @@
 
   <div class="my-5">
     <%= form.label :paper_size %>
-    <%= form.select :paper_size, Order.paper_sizes.map{|k,v| [k.upcase, v]}, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :paper_size, Order.paper_sizes.map { |k, v| [k.upcase, v] }, {}, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -37,13 +37,18 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :sticker %>
-    <%= form.check_box :sticker, class: "checkbox" %>
+    <%= form.label 'Matricapapírra legyen nyomtatva?', class: 'block mb-2' %>
+    <%= form.switch_checkbox :sticker %>
   </div>
 
   <div class="my-5">
-    <%= form.label :laminated %>
-    <%= form.check_box :laminated, class: "checkbox" %>
+    <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
+    <%= form.switch_checkbox :laminated %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label 'Én szeretném nyomtatni', class: 'block mb-2' %>
+    <%= form.switch_checkbox :printed_by_me %>
   </div>
 
   <div class="my-5">
