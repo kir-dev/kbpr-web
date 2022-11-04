@@ -7,7 +7,8 @@
 @layer components {
   .btn {
     @apply font-bold text-dark  bg-primary border-4 border-primary rounded-2xl
-    py-3 px-5 font-medium cursor-pointer;
+    py-3 px-5 font-medium cursor-pointer
+    hover:-translate-y-1 hover:shadow-md hover:shadow-secondary;
   }
 
   .btn-outline {
@@ -16,7 +17,7 @@
 
   .nav-item {
     @apply p-4 font-bold
-    hidden md:block
+    hidden md:block hover:bg-secondary hover:rounded-2xl
     ;
   }
   .mobile-nav-item {
@@ -29,6 +30,66 @@
 
   .checkbox{
    @apply block mt-2 h-5 w-5 checked:bg-primary focus:ring-transparent focus:ring-offset-0 focus:checked:bg-primary hover:checked:bg-primary rounded-sm border-gray-200;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: theme('colors.secondary') ;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: theme('colors.primary');
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 2px theme('colors.primary');
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
   }
 }
 
@@ -44,3 +105,4 @@ body {
 .label {
   @apply font-medium;
 }
+
