@@ -4,6 +4,13 @@ hu:
     errors:
       messages:
         record_invalid: Sikertelen validálás %{errors}
+      models:
+        order:
+          must_have_sch_logo: A plakáton rajta kell lennie a Schönherz logónak
+          must_be_right_format: Az igénylésnek png/jpg formátumúnak kell lennie
+          attributes:
+            group:
+              required: megadása kötelező
   date:
     abbr_day_names:
     - v.
