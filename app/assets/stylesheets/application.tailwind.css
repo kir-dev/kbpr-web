@@ -15,6 +15,11 @@
     @apply btn bg-transparent text-light;
   }
 
+  .btn-red {
+    @apply btn bg-red-500 border-red-500;
+  }
+
+
   .nav-item {
     @apply p-4 font-bold
     hidden md:block hover:bg-secondary hover:rounded-2xl
