@@ -91,6 +91,7 @@
   /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .slider.round:before {
