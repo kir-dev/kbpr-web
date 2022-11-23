@@ -58,8 +58,8 @@
       <main class="mt-28 px-5">
         <% if notice.present? %>
           <div class="notification-bar" data-controller="notification" data-notification-target="notificationBar" data-action="click->notification#close">
-            <p> <%= notice %></p>
-            <%= image_tag 'nav-close-icon.svg' %>
+            <div class="whitespace-pre-line"> <%= notice %></div>
+            <%= image_tag 'nav-close-icon.svg', class: '' %>
           </div>
         <% end %>
         <%= yield %>
