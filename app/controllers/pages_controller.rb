@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   end
 
   before_action :require_admin, only: :admin
+
   def admin
 
   end

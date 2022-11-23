@@ -1,4 +1,7 @@
 hu:
+  devise:
+    omniauth_callbacks:
+      success: Sikeres bejelentkezés!
   activerecord:
     models:
       action_text/encrypted_rich_text: Műveleti szöveg/titkosított formázott szöveg  #g
