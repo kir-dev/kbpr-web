@@ -1,12 +1,8 @@
 <div class="mx-auto md:w-2/3 w-full">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
     <%= render @article %>
 
-    <div class="flex gap-4">
+    <div class="flex items-center gap-4 mb-8" style="flex-wrap: wrap">
       <%= link_to 'Vissza a hírekhez', articles_path, class: "btn-outline" %>
       <%= link_to 'Szerkesztés', edit_article_path(@article), class: 'btn' %>
       <%= button_to 'Törlés', article_path(@article), method: :delete, class: "btn-red",

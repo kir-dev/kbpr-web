@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
-  before_action :require_login, only: %i[ show edit update destroy create new ]
+  before_action :require_login
+  before_action :require_admin, except: [:new, :create]
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -21,11 +22,11 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params.merge({user_id: current_user.id}))
+    @order = Order.new(order_params.merge({ user_id: current_user.id }))
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        format.html { redirect_to root_path, notice: "Rendelés sikeresen leadva!" }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -58,14 +59,15 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order).permit(:group_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated,
-                                    :printed_by_me, :has_sch_logo, :has_right_format)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.require(:order).permit(:group_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated,
+                                  :printed_by_me, :has_sch_logo, :has_right_format)
+  end
 end

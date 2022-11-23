@@ -1,0 +1,32 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <div class="flex gap-4">
+    <div id="<%= dom_id @user %>" class="flex items-center content-space justify-between border-white border-b-2">
+      <div>
+        <p class="my-5">
+          <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.name') %>:</strong>
+          <%= @user.name %>
+        </p>
+
+        <p class="my-5">
+          <strong class="block font-medium mb-1">Admin:</strong>
+          <%= @user.admin ? 'Igen' : 'Nem' %>
+        </p>
+
+        <p class="my-5">
+          <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.email') %>:</strong>
+          <%= @user.email %>
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full items-end">
+      <% if @user == current_user %>
+        <%= button_to 'Kilépés', destroy_user_session_path, method: :delete, class: "btn-outline" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
