@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   resources :groups
   resources :orders
   resources :articles
@@ -6,8 +8,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
+  resources :pages do
+    get :admin, on: :collection
+    get :profile, on: :collection
+  end
   root "pages#home"
 end

@@ -5,6 +5,12 @@
 
 
 @layer components {
+  .notification-bar {
+    @apply font-bold text-dark  bg-primary border-4 border-primary rounded-2xl
+    py-3 px-5 font-medium cursor-pointer mb-8 flex justify-between
+    hover:-translate-y-1 hover:shadow-md hover:shadow-secondary ;
+  }
+
   .btn {
     @apply font-bold text-dark  bg-primary border-4 border-primary rounded-2xl
     py-3 px-5 font-medium cursor-pointer inline-block
@@ -112,3 +118,10 @@ body {
   @apply font-medium;
 }
 
+.trix-content a {
+  color: theme('colors.primary')
+}
+
+.trix-content a:hover {
+  text-decoration: underline;
+}

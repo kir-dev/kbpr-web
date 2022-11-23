@@ -22,10 +22,9 @@
         <%= link_to "KWC", root_path, class: 'nav-item' %>
         <%= link_to "Kalkulátor", root_path, class: 'nav-item' %>
         <%= link_to "Rólunk", root_path, class: 'nav-item' %>
-        <%= link_to "Admin panel", root_path, class: 'nav-item' %>
-        <%= link_to "Felhasználók", users_path, class: 'nav-item' %>
+        <%= link_to "Admin panel", admin_pages_path, class: 'nav-item' if current_user&.admin? %>
         <% if current_user.present? %>
-          <%= link_to 'Profil', user_path(current_user), class: 'nav-item'%>
+          <%= link_to 'Profil', profile_pages_path, class: 'nav-item' %>
         <% else %>
           <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'nav-item' %>
         <% end %>
@@ -46,19 +45,23 @@
           <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Kalkulátor", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
-          <%= link_to "Admin panel", root_path, class: 'mobile-nav-item' %>
-          <%= link_to "Felhasználók", users_path, class: 'mobile-nav-item' %>
+          <%= link_to "Admin panel", admin_pages_path, class: 'mobile-nav-item' if current_user&.admin? %>
           <% if current_user.present? %>
-            <%= link_to 'Profil', user_path(current_user), class: 'mobile-nav-item'%>
+            <%= link_to 'Profil', profile_pages_path, class: 'mobile-nav-item' %>
           <% else %>
             <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'mobile-nav-item', form_class: 'w-full' %>
           <% end %>
         </div>
       </div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
 
       <main class="mt-28 px-5">
+        <% if notice.present? %>
+          <div class="notification-bar" data-controller="notification" data-notification-target="notificationBar" data-action="click->notification#close">
+            <p> <%= notice %></p>
+            <%= image_tag 'nav-close-icon.svg' %>
+          </div>
+        <% end %>
         <%= yield %>
       </main>
     </div>
