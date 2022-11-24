@@ -8,6 +8,8 @@ services:
     environment:
       - RAILS_ENV=production
       - RAILS_SERVE_STATIC_FILES=true
+    depends_on:
+      - postgres
   postgres:
     image: postgres
     restart: always
