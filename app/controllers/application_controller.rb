@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    render :forbidden unless current_user.present?
+    render :unauthorized unless current_user.present?
   end
   def require_admin
     render :forbidden unless current_user&.admin?
