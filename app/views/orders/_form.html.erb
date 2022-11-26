@@ -51,24 +51,23 @@
     <%= form.switch_checkbox :printed_by_me %>
   </div>
 
-  <div class="my-5">
-    <p>Elolvastam a <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási szabályzatot</a></p>
-    <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+  <div class="order-new-grid">
+    <div class="label">
+      <p>Elolvastam a
+        <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási
+          szabályzatot</a></p>
+      <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+    </div>
     <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
-  </div>
 
-  <div class="my-5">
-    <%= form.label :has_sch_logo %>
+
+    <%= form.label :has_sch_logo, class: 'label' %>
     <%= form.check_box :has_sch_logo, class: "checkbox" %>
-  </div>
 
-  <div class="my-5">
-    <%= form.label :has_right_format %>
+    <%= form.label :has_right_format, class: 'label' %>
     <%= form.check_box :has_right_format, class: "checkbox" %>
-  </div>
 
-  <div class="my-5">
-    <%= form.label :has_date %>
+    <%= form.label :has_date, class: 'label' %>
     <%= form.check_box :has_date, class: "checkbox" %>
   </div>
 
