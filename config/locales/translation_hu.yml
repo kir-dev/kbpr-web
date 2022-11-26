@@ -85,3 +85,12 @@ hu:
         group: Kör
         has_sch_logo: Igénylésen van Schönherz logó
         has_right_format: Igénylés png/jpg formátumú
+        has_date: Az igénylésemen szerepel lejárati időpont, vagy a rendezvény dátuma
+        accepted_terms_of_service: Elolvastam a plakátolási szabályzatot
+        paper_size_enum:
+          a2: 'A2'
+          a3: 'A3'
+          a4: 'A4'
+          a5: 'A5'
+          a6: 'A6'
+          other: 'Egyéb'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_212106) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_103456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_212106) do
     t.bigint "group_id", null: false
     t.boolean "has_sch_logo"
     t.boolean "has_right_format"
+    t.boolean "has_date"
+    t.boolean "accepted_terms_of_service"
     t.index ["group_id"], name: "index_orders_on_group_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
