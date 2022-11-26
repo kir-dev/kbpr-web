@@ -28,11 +28,11 @@
 
   <div class="my-5">
     <%= form.label :paper_size %>
-    <%= form.select :paper_size, Order.paper_sizes.map { |k, v| [k.upcase, v] }, { prompt: "-- Válassz papírméretet! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :paper_size, Order.paper_sizes_with_translation, { prompt: "-- Válassz papírméretet! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :comment %>
+    <%= form.label 'Egyéb megjegyzés a papírméretre vonatkozóan' %>
     <%= form.text_area :comment, rows: 4, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
@@ -52,13 +52,24 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :has_sch_logo, 'Az igénylésen rajta van a Schönherz logó' %>
+    <p>Elolvastam a <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási szabályzatot</a></p>
+    <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+    <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :has_sch_logo %>
     <%= form.check_box :has_sch_logo, class: "checkbox" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :has_right_format, 'Az igénylésem png/jpg formátumú' %>
+    <%= form.label :has_right_format %>
     <%= form.check_box :has_right_format, class: "checkbox" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :has_date %>
+    <%= form.check_box :has_date, class: "checkbox" %>
   </div>
 
   <div class="inline">
