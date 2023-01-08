@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>KbprWeb</title>
+  <title>KBPR Csoport</title>
+  <link rel="icon" type="image/x-icon" href="<%= path_to_image('favicon.png') %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -54,8 +55,7 @@
         </div>
       </div>
 
-
-      <main class="mt-28 px-5">
+      <main class="mt-28 px-5 max-w-5xl mx-auto">
         <% if notice.present? %>
           <div class="notification-bar" data-controller="notification" data-notification-target="notificationBar" data-action="click->notification#close">
             <div class="whitespace-pre-line"> <%= notice %></div>
@@ -72,8 +72,8 @@
         <h2 class="text-center text-2xl font-bold">KBPR Csoport</h2>
         <h3 class="text-center text-xl">kbpr.sch.bme.hu</h3>
       </div>
-      <div class="flex items-center justify-around w-full">
-        <a href="https://kir-dev.hu/">
+      <div class="flex items-center justify-between w-full px-4 gap-4">
+        <a href="https://kir-dev.hu/" class="footer-link">
           <%= image_tag 'kir-dev-logo.svg', class: 'footer-image' %>
         </a>
         <a href="https://schdesign.hu/">

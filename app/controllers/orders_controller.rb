@@ -68,6 +68,7 @@ class OrdersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def order_params
     params.require(:order).permit(:group_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated,
-                                  :printed_by_me, :has_sch_logo, :has_right_format)
+                                  :printed_by_me, :has_sch_logo, :has_right_format,
+                                  :has_date, :accepted_terms_of_service)
   end
 end
