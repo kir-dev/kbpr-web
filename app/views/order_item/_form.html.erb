@@ -1,30 +1,41 @@
-<%= form_with(model: order, class: "contents", builder: CustomFormBuilder) do |form| %>
-  <% if order.errors.any? %>
+<%= form_with(model: order_item, class: "contents", builder: CustomFormBuilder) do |form| %>
+  <% if order_item.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2>A rendelés hibás</h2>
 
       <ul class="list-disc ml-5">
-        <% order.errors.each do |error| %>
+        <% order_item.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :group %>
-    <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <h2>A rendelés termékei</h2>
-
-  <%= render "order_item/form", order_item: OrderItem.new %>
 
   <div class="my-5">
-    <%= form.label 'Egyéb megjegyzés a papírméretre vonatkozóan' %>
-    <%= form.text_area :comment, rows: 4, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :link %>
+    <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :item %>
+    <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] }, { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label 'Matricapapírra legyen nyomtatva?', class: 'block mb-2' %>
+    <%= form.switch_checkbox :sticker %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
+    <%= form.switch_checkbox :laminated %>
+  </div>
 
   <div class="my-5">
     <%= form.label 'Én szeretném nyomtatni', class: 'block mb-2' %>
