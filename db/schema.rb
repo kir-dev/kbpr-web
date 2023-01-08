@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_142828) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_144439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,8 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_142828) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price"
+    t.string "name", null: false
+    t.decimal "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_142828) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "item_id", null: false
-    t.decimal "price"
+    t.decimal "price", null: false
+    t.integer "quantity", null: false
+    t.boolean "laminated", null: false
+    t.string "link", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
@@ -83,12 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_142828) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "link"
-    t.integer "print_quantity"
-    t.string "paper_size"
     t.text "comment"
-    t.boolean "sticker"
-    t.boolean "laminated"
     t.boolean "printed_by_me"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
