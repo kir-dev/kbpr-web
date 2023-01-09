@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'new_item_order' do %>
+  <%= link_to 'Termék hozzáadása', new_item_order_path(1), class: 'btn' %>
+
+  <%= render @order_items %>
+<% end %>

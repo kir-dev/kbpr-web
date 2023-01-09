@@ -14,4 +14,8 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def current_order
+    orders.draft.last
+  end
 end

@@ -1,0 +1,8 @@
+<div class="flex justify-between">
+  <h2 class="font-bold text-2xl">A rendelés termékei</h2>
+  <%= link_to 'Termék hozzáadása', new_item_order_path(order), class: 'btn' %>
+</div>
+<%= render 'order_items/form', order_item: OrderItem.new(order: order) if action_name == 'new_item' %>
+<div class="border-l-8 pl-4 border-primary">
+  <%= render order.order_items %>
+</div>
