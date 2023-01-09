@@ -1,0 +1,48 @@
+<% if action_name.eql?('new_item')
+     url = create_item_order_path(order_item.order)
+   else
+     url = update_item_order_path(order_item)
+   end %>
+<div class="border-8 p-4 mt-6 pad border-primary rounded-md">
+  <h2 class="text-2xl">Termék hozzáadás</h2>
+  <%= form_with(model: order_item, url: url, class: "contents", builder: CustomFormBuilder) do |form| %>
+    <% if order_item.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2>A rendelés hibás</h2>
+
+        <ul class="list-disc ml-5">
+          <% order_item.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="my-5">
+      <%= form.label :link %>
+      <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :quantity %>
+      <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :item %>
+      <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] }, { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
+      <%= form.switch_checkbox :laminated %>
+    </div>
+
+
+    <div class="flex gap-4">
+      <%= form.submit 'Hozzáad', class: "btn grow" %>
+      <%= link_to 'Mégsem', all_item_order_path(order_item.order), class: 'btn btn-outline grow' %>
+    </div>
+  <% end %>
+</div>

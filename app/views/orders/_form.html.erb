@@ -16,9 +16,9 @@
     <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <h2>A rendelés termékei</h2>
-
-  <%= render "order_item/form", order_item: OrderItem.new %>
+  <%= turbo_frame_tag 'order_items_frame' do %>
+    <%= render 'order_items', order: order %>
+  <% end %>
 
   <div class="my-5">
     <%= form.label 'Egyéb megjegyzés a papírméretre vonatkozóan' %>
@@ -51,7 +51,7 @@
     <%= form.check_box :has_date, class: "checkbox" %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "btn w-full mt-4" %>
+  <div class="mt-6">
+    <%= form.submit class: "btn w-full" %>
   </div>
 <% end %>

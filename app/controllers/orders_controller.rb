@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item]
   before_action :require_login
-  before_action :require_admin, except: [:new, :create]
+  before_action :require_admin, except: [:new, :create, :new_item, :create_item, :update_item, :all_item]
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -13,7 +13,30 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.current_order || Order.create!(user: current_user)
+  end
+
+  def new_item
+  end
+
+  def all_item
+
+  end
+
+  def create_item
+    order_item = OrderItem.new(order_item_params)
+    order_item.order = @order
+    order_item.price = order_item.item.price
+    if order_item.save
+      @order_items = @order.order_items
+    else
+      ### handle validation errors
+    end
+  end
+
+  def update_item
+    order_item = OrderItem.find(params[:id])
+    order_item.update!(order_item_params)
   end
 
   # GET /orders/1/edit
@@ -70,5 +93,9 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:group_id, :link, :print_quantity, :paper_size, :comment, :sticker, :laminated,
                                   :printed_by_me, :has_sch_logo, :has_right_format,
                                   :has_date, :accepted_terms_of_service)
+  end
+
+  def order_item_params
+    params.require(:order_item).permit(:link, :quantity, :item_id, :laminated)
   end
 end

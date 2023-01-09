@@ -94,3 +94,10 @@ hu:
           a5: 'A5'
           a6: 'A6'
           other: 'Egyéb'
+      order_item:
+        quantity: Mennyiség
+        item: Elem
+        link: Plakát URL
+        laminated: Laminált
+        price: Ár
+
