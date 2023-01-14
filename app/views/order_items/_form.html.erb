@@ -1,4 +1,4 @@
-<% if action_name.eql?('new_item')
+<% if [:new_item,:create_item].include?(action_name.to_sym)
      url = create_item_order_path(order_item.order)
    else
      url = update_item_order_path(order_item)
@@ -39,10 +39,9 @@
       <%= form.switch_checkbox :laminated %>
     </div>
 
-
     <div class="flex gap-4">
-      <%= form.submit 'Hozzáad', class: "btn grow" %>
       <%= link_to 'Mégsem', all_item_order_path(order_item.order), class: 'btn btn-outline grow' %>
+      <%= form.submit 'Hozzáad', class: "btn grow" %>
     </div>
   <% end %>
 </div>

@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item]
   before_action :require_login
-  before_action :require_admin, except: [:new, :create, :new_item, :create_item, :update_item, :all_item]
+  before_action :require_admin, except: [:new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item]
   # GET /orders or /orders.json
   def index
     @orders = Order.all
@@ -24,19 +24,22 @@ class OrdersController < ApplicationController
   end
 
   def create_item
-    order_item = OrderItem.new(order_item_params)
-    order_item.order = @order
-    order_item.price = order_item.item.price
-    if order_item.save
-      @order_items = @order.order_items
-    else
-      ### handle validation errors
+    @order_item = OrderItem.new(order_item_params)
+    @order_item.order = @order
+    @order_item.price = @order_item.item&.price
+    if @order_item.save
+      @order_item = nil # close editform
     end
   end
 
   def update_item
     order_item = OrderItem.find(params[:id])
     order_item.update!(order_item_params)
+  end
+
+  def delete_item
+    @order_item = OrderItem.find(params[:id])
+    @order_item.destroy!
   end
 
   # GET /orders/1/edit
