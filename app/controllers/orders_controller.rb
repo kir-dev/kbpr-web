@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize]
+  before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize complete]
   before_action :require_login
   before_action :require_admin, except: [:finalize, :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item]
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.where(state: :processing).order(created_at: :desc)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -64,12 +64,17 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
-    @order.destroy
+    @order.update!(deleted: true)
 
     respond_to do |format|
       format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def complete
+    @order.update!(state: :complete)
+    redirect_to orders_url, notice: "A rendelés elkészült!"
   end
 
   private

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :orders do
     patch :finalize, on: :member
+    post :complete, on: :member
   end
 
   resources :articles

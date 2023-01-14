@@ -10,6 +10,7 @@ class Order < ApplicationRecord
   validates :has_right_format, acceptance: true, unless: :draft?
   validates :has_date, acceptance: true, unless: :draft?
   validates :order_items, presence: :true, unless: :draft?
+  default_scope { where(deleted: :false) }
 
   enum :state, { draft: 'draft', processing: 'processing', complete: 'complete' }
 
