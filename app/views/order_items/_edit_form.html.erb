@@ -1,0 +1,42 @@
+<%= turbo_frame_tag "order_item_frame_#{order_item.id}" do %>
+  <% form_with model: order_item, builder: CustomFormBuilder do |form| %>
+    <div class="mt-6 bg-secondary p-4 rounded-md">
+      <% if order_item.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+          <h2>A rendelés hibás</h2>
+
+          <ul class="list-disc ml-5">
+            <% order_item.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="my-5">
+        <%= form.label :link %>
+        <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :quantity %>
+        <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :item %>
+        <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] }, { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
+        <%= form.switch_checkbox :laminated %>
+      </div>
+
+      <div class="flex gap-4">
+        <%= link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
+        <%= form.submit 'Mentés', class: "btn grow" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

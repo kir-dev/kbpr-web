@@ -1,7 +1,7 @@
-<% if [:new_item,:create_item].include?(action_name.to_sym)
-     url = create_item_order_path(order_item.order)
+<% if [:new,:create].include?(action_name.to_sym)
+     url = order_items_path(order_id: order_item.order)
    else
-     url = update_item_order_path(order_item)
+     url = order_items_path(order_item)
    end %>
 <div class="border-8 p-4 mt-6 pad border-primary rounded-md">
   <h2 class="text-2xl">Termék hozzáadás</h2>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="flex gap-4">
-      <%= link_to 'Mégsem', all_item_order_path(order_item.order), class: 'btn btn-outline grow' %>
+      <%= link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
       <%= form.submit 'Hozzáad', class: "btn grow" %>
     </div>
   <% end %>

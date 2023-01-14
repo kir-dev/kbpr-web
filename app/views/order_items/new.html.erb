@@ -1,0 +1,3 @@
+<%= turbo_frame_tag 'order_items_frame' do %>
+  <%= render 'order_items_with_form', order: @order, order_item: OrderItem.new(order: @order) %>
+<% end %>
