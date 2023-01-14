@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item]
+  before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize]
   before_action :require_login
   before_action :require_admin, except: [:finalize, :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item]
   # GET /orders or /orders.json
@@ -14,8 +14,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = current_user.current_order || Order.create!(user: current_user)
+    if params[:process]
+      @order.state = :processing
+      @order.validate
+    end
   end
-
 
   # GET /orders/1/edit
   def edit
@@ -37,7 +40,13 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    p 'f'
+    @order.update(order_params)
+    if @order.update(state: :processing)
+
+      redirect_to root_path, notice: "Rendelés sikeresen leadva!"
+    else
+      redirect_to new_order_path(process: true )
+    end
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json

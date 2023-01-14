@@ -1,6 +1,6 @@
 <div class="flex justify-between">
   <h2 class="font-bold text-2xl">A rendelés termékei</h2>
-  <%= link_to 'Tétel hozzáadása', new_order_item_path(order_id: order.id), class: 'btn text-xl' %>
+  <%= link_to 'Termék hozzáadása', new_order_item_path(order_id: order.id), class: 'btn text-xl' %>
 </div>
 <%= render 'order_items/form', order_item: order_item if defined?(order_item) && order_item.present?%>
 <div class="border-l-8 pl-4 border-primary">
