@@ -1,4 +1,8 @@
-<%= form_with(model: order, class: "contents", builder: CustomFormBuilder) do |form| %>
+<%= turbo_frame_tag 'order_items_frame' do %>
+  <%= render 'order_items/order_items_with_form', order: order, order_item: nil %>
+<% end %>
+
+<%= form_with(model: order, class: "contents", url: finalize_order_path(order), builder: CustomFormBuilder) do |form| %>
   <% if order.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2>A rendelés hibás</h2>
@@ -15,10 +19,6 @@
     <%= form.label :group %>
     <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
-  <%= turbo_frame_tag 'order_items_frame' do %>
-    <%= render 'order_items', order: order, order_item: nil %>
-  <% end %>
 
   <div class="my-5">
     <%= form.label 'Egyéb megjegyzés a papírméretre vonatkozóan' %>
@@ -52,6 +52,6 @@
   </div>
 
   <div class="mt-6">
-    <%= form.submit class: "btn w-full" %>
+    <%= form.submit 'Rendelés leadása', class: "btn w-full" %>
   </div>
 <% end %>
