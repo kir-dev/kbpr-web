@@ -11,6 +11,10 @@ hu:
           attributes:
             group:
               required: megadása kötelező
+        order_item:
+          attributes:
+            item:
+              required: megadása kötelező
   date:
     abbr_day_names:
     - v.

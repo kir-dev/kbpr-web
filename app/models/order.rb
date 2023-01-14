@@ -1,10 +1,10 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :group, optional: true
-  has_many :order_items
+  has_many :order_items, -> { order(created_at: :desc) }
   has_many :items, through: :order_items
 
-  validates :group_id,presence: true, unless: :draft?
+  validates :group_id, presence: true, unless: :draft?
   validates :accepted_terms_of_service, acceptance: true, unless: :draft?
   validates :has_sch_logo, acceptance: true, unless: :draft?
   validates :has_right_format, acceptance: true, unless: :draft?

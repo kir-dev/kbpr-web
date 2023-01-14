@@ -17,7 +17,7 @@
   </div>
 
   <%= turbo_frame_tag 'order_items_frame' do %>
-    <%= render 'order_items', order: order %>
+    <%= render 'order_items', order: order, order_item: nil %>
   <% end %>
 
   <div class="my-5">

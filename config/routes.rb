@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get :new_item, on: :member
     post :create_item, on: :member
     post :update_item, on: :member
+    get :delete_item, on: :member
     get :all_item, on: :member
 
   end

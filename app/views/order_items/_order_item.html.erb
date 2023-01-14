@@ -1,25 +1,28 @@
-<div class="mt-6 bg-secondary p-4 rounded-md">
-  <div class="text-2xl mb-4">
-    <%= order_item.item.name %>
+<%= turbo_frame_tag "order_item_frame_#{order_item.id}" do %>
+  <div class="mt-6 bg-secondary p-4 rounded-md">
+    <div class="text-2xl mb-4">
+      <%= order_item.item.name %>
+    </div>
+    <div class="order_item_row">
+      <%= label_tag :link, t('activerecord.attributes.order_item.link') %>
+      <%= order_item.link %>
+    </div>
+    <div class="order_item_row">
+      <%= label_tag t('activerecord.attributes.order_item.quantity') %>
+      <%= order_item.quantity %>
+    </div>
+    <div class="order_item_row">
+      <%= label_tag t('activerecord.attributes.order_item.price') %>
+      <%= order_item.price %> JMF
+    </div>
+    <div class="order_item_row">
+      <%= label_tag t('activerecord.attributes.order_item.laminated') %>
+      <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox" %>
+    </div>
+    <div class="order_item_row justify-end mt-4">
+      <%= button_to 'Törlés',root_path, class: 'btn btn-outline' %>
+      <%= button_to 'Szerkesztés', root_path, class: 'btn' %>
+      <%= button_to 'Törlés', { action: :delete_item }, class: 'btn' %>
+    </div>
   </div>
-  <div class="order_item_row">
-    <%= label_tag :link, t('activerecord.attributes.order_item.link') %>
-    <%= order_item.link %>
-  </div>
-  <div class="order_item_row">
-    <%= label_tag t('activerecord.attributes.order_item.quantity') %>
-    <%= order_item.quantity %>
-  </div>
-  <div class="order_item_row">
-    <%= label_tag t('activerecord.attributes.order_item.price') %>
-    <%= order_item.price %> JMF
-  </div>
-  <div class="order_item_row">
-    <%= label_tag t('activerecord.attributes.order_item.laminated') %>
-    <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox" %>
-  </div>
-  <div class="order_item_row justify-end mt-4">
-    <%= button_to 'Törlés', root_path, class: 'btn btn-outline' %>
-    <%= button_to 'Szerkesztés', root_path, class: 'btn' %>
-  </div>
-</div>
+<% end %>
