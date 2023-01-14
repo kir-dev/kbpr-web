@@ -112,6 +112,7 @@
     .order-new-grid .label {
         @apply col-span-11;
     }
+
     .order-new-grid .checkbox {
         @apply ml-auto;
     }
@@ -119,6 +120,11 @@
     .order_item_row {
         @apply flex gap-4 justify-between text-xl flex-wrap;
     }
+
+    .row {
+        @apply flex gap-4 justify-between text-xl;
+    }
+
 }
 
 body {

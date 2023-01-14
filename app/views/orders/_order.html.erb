@@ -1,47 +1,53 @@
-<div id="<%= dom_id order %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= order.user_id %>
+<div id="<%= dom_id order %>" class="mt-6 bg-secondary rounded-md m-auto p-4">
+  <div class="row">
+    <h3 class="text-4xl mb-4">Adatok</h3>
+  </div>
+  <p class="row">
+    <span>Megrendelő</span>
+    <strong>
+      <%= order.user.name %>
+    </strong>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Link:</strong>
-    <%= order.link %>
+  <p class="row">
+    <span>Megjegyzés</span>
+    <strong>
+      <%= order.comment.present? ? order.comment : '-' %>
+    </strong>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Print quantity:</strong>
-    <%= order.print_quantity %>
+  <p class="row">
+    <span>Én nyomtatom</span>
+    <%= check_box_tag :laminated, 1, order.printed_by_me, class: "checkbox", disabled: true %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Paper size:</strong>
-    <%= order.paper_size %>
-  </p>
+  <h3 class="text-4xl my-6">Termékek</h3>
+  <% order.order_items.each do |order_item| %>
+    <div class="mb-4">
+   <span class="text-2xl">
+     <%= order_item.item.name %>
+   </span>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Comment:</strong>
-    <%= order.comment %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Sticker:</strong>
-    <%= order.sticker %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Laminated:</strong>
-    <%= order.laminated %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Printed by me:</strong>
-    <%= order.printed_by_me %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this order", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this order', edit_order_path(order), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+      <p class="row">
+        <span>Darabszám</span>
+        <strong>
+          <%= order_item.quantity %>
+        </strong>
+      </p>
+      <p class="row">
+        <span>Lamináljuk</span>
+        <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox", disabled: true %>
+      </p>
+    </div>
   <% end %>
+  <div class="row justify-end mt-4 flex-wrap">
+    <% if action_name != "show" %>
+      <%= button_to "Törlés", order_path(order), method: :delete, form: {data: {turbo_confirm: 'Biztosan törlöd a rendelést?'}}, class: "btn mr-4 btn btn-outline" %>
+
+      <%= link_to 'Szerkesztés', edit_order_path(order), class: "btn btn-outline" if current_user.admin? %>
+    <% end %>
+  </div>
+  <div class="flex justify-center mt-8">
+    <%= button_to "Kész", complete_order_path(order), form_class: 'w-full',  class: "btn px-20 text-xl w-full" %>
+  </div>
 </div>

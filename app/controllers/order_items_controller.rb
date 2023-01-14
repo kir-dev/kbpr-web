@@ -3,6 +3,8 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:edit, :update]
 
   def index
+    @orders = Order.all
+    @order = @order.processing
   end
 
   def show
