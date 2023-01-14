@@ -1,19 +1,21 @@
+<% if order.errors.any? %>
+  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mb-8">
+    <h2>A rendelés hibás</h2>
+
+    <ul class="list-disc ml-5">
+      <% order.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= turbo_frame_tag 'order_items_frame' do %>
   <%= render 'order_items/order_items_with_form', order: order, order_item: nil %>
 <% end %>
 
-<%= form_with(model: order, class: "contents", url: finalize_order_path(order), builder: CustomFormBuilder) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2>A rendelés hibás</h2>
-
-      <ul class="list-disc ml-5">
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: order, class: "contents", url: finalize_order_path(order),
+              data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
 
   <div class="my-5">
     <%= form.label :group %>
@@ -31,27 +33,33 @@
     <%= form.switch_checkbox :printed_by_me %>
   </div>
 
-  <div class="order-new-grid">
-    <div class="label">
-      <p>Elolvastam a
-        <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási
-          szabályzatot</a></p>
-      <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+  <div>
+    <div class="flex justify-between mb-4">
+      <div>
+        <p>Elolvastam a
+          <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási
+            szabályzatot</a></p>
+        <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+      </div>
+      <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
     </div>
-    <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
 
+    <div class="flex justify-between mb-4">
+      <%= form.label :has_sch_logo, class: 'label' %>
+      <%= form.check_box :has_sch_logo, class: "checkbox" %>
+    </div>
 
-    <%= form.label :has_sch_logo, class: 'label' %>
-    <%= form.check_box :has_sch_logo, class: "checkbox" %>
+    <div class="flex justify-between mb-4">
+      <%= form.label :has_right_format, class: 'label' %>
+      <%= form.check_box :has_right_format, class: "checkbox" %>
+    </div>
 
-    <%= form.label :has_right_format, class: 'label' %>
-    <%= form.check_box :has_right_format, class: "checkbox" %>
+    <div class="flex justify-between mb-4">
+      <%= form.label :has_date, class: 'label' %>
+      <%= form.check_box :has_date, class: "checkbox" %>
+    </div>
 
-    <%= form.label :has_date, class: 'label' %>
-    <%= form.check_box :has_date, class: "checkbox" %>
-  </div>
-
-  <div class="mt-6">
-    <%= form.submit 'Rendelés leadása', class: "btn w-full" %>
-  </div>
+    <div class="mt-6">
+      <%= form.submit 'Rendelés leadása', class: "btn w-full" %>
+    </div>
 <% end %>

@@ -9,6 +9,7 @@ class Order < ApplicationRecord
   validates :has_sch_logo, acceptance: true, unless: :draft?
   validates :has_right_format, acceptance: true, unless: :draft?
   validates :has_date, acceptance: true, unless: :draft?
+  validates :order_items, presence: :true, unless: :draft?
 
   enum :state, { draft: 'draft', processing: 'processing', complete: 'complete' }
 
