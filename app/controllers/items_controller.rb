@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    @items = Item.all.order(created_at: :desc)
   end
 
   # GET /items/1 or /items/1.json
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
+        format.html { redirect_to items_url, notice: "A terméket sikeresen létrehoztuk!" }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
+        format.html { redirect_to items_url, notice: "A terméket sikeresen frissítettük!" }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit, status: :unprocessable_entity }
