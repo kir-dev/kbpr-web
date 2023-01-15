@@ -1,17 +1,16 @@
 <div id="<%= dom_id item %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">Név:</strong>
     <%= item.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= item.price %>
+    <strong class="block font-medium mb-1">Ár:</strong>
+    <%= item.price %> JMF
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this item", item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this item', edit_item_path(item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Szerkesztés', edit_item_path(item), class: "btn" %>
     <hr class="mt-6">
   <% end %>
 </div>

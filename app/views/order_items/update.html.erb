@@ -1,3 +1,11 @@
 <%= turbo_frame_tag "order_item_frame_#{@order_item.id}" do %>
   <%= render 'order_item', order_item: @order_item %>
 <% end %>
+
+<turbo-stream action="replace" target="#order_total_price">
+  <template>
+    <div id="order_total_price">
+      This div will replace the existing element with the DOM ID "message_1".
+    </div>
+  </template>
+</turbo-stream>

@@ -102,4 +102,6 @@ hu:
         link: Plakát URL
         laminated: Laminált
         price: Ár
-
+      item:
+        name: Név
+        price: Ár

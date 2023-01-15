@@ -4,7 +4,7 @@ class OrderItemsController < ApplicationController
 
   def index
     @orders = Order.all
-    @order = @order.processing
+    # @order.state = :processing
   end
 
   def show
@@ -28,6 +28,7 @@ class OrderItemsController < ApplicationController
 
   def update
     if @order_item.update(order_item_params)
+      broadcast_order_update
       return
     else
       render partial: 'edit_form', locals: { order_item: @order_item }
@@ -37,6 +38,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item = OrderItem.find(params[:id])
     @order_item.destroy!
+    broadcast_order_update
   end
 
   private
@@ -51,5 +53,10 @@ class OrderItemsController < ApplicationController
 
   def order_item_params
     params.require(:order_item).permit(:link, :quantity, :item_id, :laminated)
+  end
+
+  def broadcast_order_update
+    OrderChannel.broadcast_to(current_user,
+                              { order_total_price: @order_item.order.total_price })
   end
 end

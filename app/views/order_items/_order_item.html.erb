@@ -1,5 +1,4 @@
-<%= turbo_frame_tag "order_item_frame_#{order_item.id}" do %>
-
+<%= turbo_frame_tag "order_item_frame_#{order_item.id}", target: '#order_items_frame' do %>
   <div class="mt-6 bg-secondary p-4 rounded-md">
     <div class="text-2xl mb-4">
       <%= order_item.item.name %>
@@ -13,8 +12,12 @@
       <%= order_item.quantity %>
     </div>
     <div class="order_item_row">
-      <%= label_tag t('activerecord.attributes.order_item.price') %>
+      <%= label_tag 'Egységár' %>
       <%= order_item.price %> JMF
+    </div>
+    <div class="order_item_row">
+      <%= label_tag 'Összesen' %>
+      <%= order_item.price * order_item.quantity %> JMF
     </div>
     <div class="order_item_row">
       <%= label_tag t('activerecord.attributes.order_item.laminated') %>

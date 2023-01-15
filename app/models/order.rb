@@ -17,4 +17,10 @@ class Order < ApplicationRecord
   def self.paper_sizes_with_translation
     paper_sizes.map { |k, v| [I18n.translate("activerecord.attributes.order.paper_size_enum.#{k}"), v] }
   end
+
+  def total_price
+    order_items.sum do |order_item|
+      order_item.price * order_item.quantity
+    end
+  end
 end
