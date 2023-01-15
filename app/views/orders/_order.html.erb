@@ -3,9 +3,29 @@
     <h3 class="text-4xl mb-4">Adatok</h3>
   </div>
   <p class="row">
+    <span>Állapot</span>
+    <strong>
+      <%= Order.human_enum_name(:states, order.state) %>
+    </strong>
+  </p>
+  <p class="row">
     <span>Megrendelő</span>
     <strong>
       <%= order.user.name %>
+    </strong>
+  </p>
+
+  <p class="row">
+    <span>Kör</span>
+    <strong>
+      <%= order.group&.name %>
+    </strong>
+  </p>
+
+  <p class="row">
+    <span>Leadva</span>
+    <strong>
+      <%= I18n.l(order.finalized_at) if order.finalized_at %>
     </strong>
   </p>
 
@@ -18,7 +38,7 @@
 
   <p class="row">
     <span>Én nyomtatom</span>
-    <%= check_box_tag :laminated, 1, order.printed_by_me, class: "checkbox", disabled: true %>
+    <%= order.printed_by_me ? 'Igen' : 'Nem' %>
   </p>
 
   <h3 class="text-4xl my-6">Termékek</h3>
@@ -36,18 +56,18 @@
       </p>
       <p class="row">
         <span>Lamináljuk</span>
-        <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox", disabled: true %>
+        <%= order_item.laminated ? 'Igen' : 'Nem' %>
       </p>
     </div>
   <% end %>
   <div class="row justify-end mt-4 flex-wrap">
     <% if action_name != "show" %>
-      <%= button_to "Törlés", order_path(order), method: :delete, form: {data: {turbo_confirm: 'Biztosan törlöd a rendelést?'}}, class: "btn mr-4 btn btn-outline" %>
+      <%= button_to "Törlés", order_path(order), method: :delete, form: { data: { turbo_confirm: 'Biztosan törlöd a rendelést?' } }, class: "btn mr-4 btn btn-outline" %>
 
       <%= link_to 'Szerkesztés', edit_order_path(order), class: "btn btn-outline" if current_user.admin? %>
     <% end %>
   </div>
   <div class="flex justify-center mt-8">
-    <%= button_to "Kész", complete_order_path(order), form_class: 'w-full',  class: "btn px-20 text-xl w-full" %>
+    <%= button_to "Kész", complete_order_path(order), form_class: 'w-full', class: "btn px-20 text-xl w-full" %>
   </div>
 </div>

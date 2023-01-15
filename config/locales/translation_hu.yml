@@ -74,6 +74,11 @@ hu:
         name: Név  #g
 
       order:
+        state: Állapot
+        states:
+          processing: Nyomtatásra vár
+          draft: Összeállítás alatt
+          complete: Nyomtatva
         comment: Megjegyzés  #g
         laminated: Laminált  #g
         link: Plakát / szórólap linkje  #g
