@@ -4,7 +4,9 @@ class OrdersController < ApplicationController
   before_action :require_admin, except: [:finalize, :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item]
   # GET /orders or /orders.json
   def index
-    @orders = Order.all.where(state: :processing  ).order(created_at: :desc)
+    search_attributes = {state: params.dig(:order, :state)|| :processing}
+    @search_order = Order.new(search_attributes)
+    @orders = Order.where(search_attributes).order(finalized_at: :asc)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -41,11 +43,11 @@ class OrdersController < ApplicationController
 
   def finalize
     @order.update(order_params)
-    if @order.update(state: :processing)
+    if @order.update(state: :processing, finalized_at: Time.current)
 
       redirect_to root_path, notice: "Rendelés sikeresen leadva!"
     else
-      redirect_to new_order_path(process: true )
+      redirect_to new_order_path(process: true)
     end
   end
 
@@ -53,11 +55,9 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "A rendelést sikeresen leadtad!" }
-        format.json { render :show, status: :ok, location: @order }
+        format.html { redirect_to orders_url, notice: "A rendelést sikeresen mentve!" }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -73,7 +73,7 @@ class OrdersController < ApplicationController
   end
 
   def complete
-    @order.update!(state: :complete)
+    @order.update!(state: :complete, completed_at: Time.current)
     redirect_to orders_url, notice: "A rendelés elkészült!"
   end
 

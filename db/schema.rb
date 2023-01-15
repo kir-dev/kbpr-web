@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_195727) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_15_135947) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_195727) do
     t.boolean "accepted_terms_of_service"
     t.string "state", default: "draft"
     t.boolean "deleted", default: false
+    t.datetime "finalized_at"
+    t.datetime "completed_at"
     t.index ["group_id"], name: "index_orders_on_group_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

@@ -69,6 +69,8 @@ hu:
     - :month
     - :day
   datetime:
+    formats:
+      default: "%Y.%m.%d %H:%M"
     distance_in_words:
       about_x_hours:
         one: kb. 1 órája

@@ -1,6 +1,17 @@
 <div class="w-full">
   <h1 class="font-bold text-4xl">Rendelések</h1>
+  <div class="p-4 bg-secondary rounded-md mt-4">
+    <h2 class="text-2xl font-bold">Szűrő</h2>
+    <%= form_with(model: @search_order, url: orders_path, method: :get, class: "contents",
+                  data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
 
+      <div class="my-5">
+        <%= form.label :state, class: 'text-xl' %>
+        <%= form.select :state, Order.states.values.map { |status| [Order.human_enum_name(:states, status), status] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+      <%= form.submit 'Szűrés', class: 'btn px-16 text-xl' %>
+    <% end %>
+  </div>
   <div id="orders" class="min-w-full mb-8">
     <% unless @orders.count.zero? %>
       <%= render @orders %>
