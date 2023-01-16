@@ -1,0 +1,9 @@
+<h1 class="font-bold text-4xl">Rendeléseim</h1>
+<div id="orders" class="max-w-xl m-auto mb-8">
+  <% unless @orders.count.zero? %>
+    <%= render @orders %>
+  <% else %>
+
+    <div class="mt-4">Nincs aktív megrendelésed!</div>
+  <% end %>
+</div>

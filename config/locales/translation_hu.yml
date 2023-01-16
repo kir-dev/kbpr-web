@@ -69,6 +69,7 @@ hu:
         provider: Szolgáltató  #g
         remember_created_at: 'Emlékezz létrehozva:'  #g
         uid: Uid  #g
+        room_number: Szobaszám
 
       group:
         name: Név  #g

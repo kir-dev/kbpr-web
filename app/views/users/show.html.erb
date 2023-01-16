@@ -1,7 +1,7 @@
-<div class="mx-auto w-full">
-  <div class="flex gap-4">
+<div class="mx-auto w-full pb-7 max-w-xl">
+  <%= link_to 'Vissza', users_url, class: 'btn btn-outline' %>
+  <%= render 'form', user: @user %>
 
-    <%= render @user %>
-
-  </div>
+  <h2 class="text-4xl mt-8">Rendelések</h2>
+  <%= render @user.orders %>
 </div>

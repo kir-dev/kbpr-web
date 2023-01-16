@@ -68,6 +68,8 @@
     <% end %>
   </div>
   <div class="flex justify-center mt-8">
-    <%= button_to "Kész", complete_order_path(order), form_class: 'w-full', class: "btn px-20 text-xl w-full" %>
+    <% if order.state == "processing" && action_name == 'index' %>
+      <%= button_to "Kész", complete_order_path(order), form_class: 'w-full', class: "btn px-20 text-xl w-full" %>
+    <% end %>
   </div>
 </div>

@@ -7,6 +7,10 @@ class OrderItemsController < ApplicationController
     # @order.state = :processing
   end
 
+  def my
+    @orders = current_user.orders
+  end
+
   def show
   end
 
