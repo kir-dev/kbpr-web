@@ -9,6 +9,10 @@ class OrdersController < ApplicationController
     @orders = Order.where(search_attributes).order(finalized_at: :asc)
   end
 
+  def my_orders
+    @orders = current_user.orders
+  end
+
   # GET /orders/1 or /orders/1.json
   def show
   end

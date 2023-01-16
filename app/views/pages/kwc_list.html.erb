@@ -1,0 +1,19 @@
+<div class="max-w-xl m-auto">
+  <h1 class="text-4xl font-bold mb-8">KWC Rendelések</h1>
+  <% if @users.empty? %>
+    <p>
+      Nincs jelenleg KWC rendelés.
+    </p>
+  <% else %>
+    <div class="flex justify-between bg-secondary p-4 rounded-lg mb-4">
+      <span class="font-bold">Név</span>
+      <span class="font-bold">Szobaszám</span>
+    </div>
+    <% @users.each do |user| %>
+      <div class="flex justify-between bg-secondary p-4 rounded-lg mb-4">
+        <span><%= user.name %></span>
+        <span><%= user.room_number %></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>

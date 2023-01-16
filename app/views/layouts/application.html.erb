@@ -20,11 +20,12 @@
           <%= image_tag "kbpr-logo.svg" %>
         <% end %>
         <%= link_to "Rendelés leadás", new_order_path, class: 'nav-item' %>
-        <%= link_to "KWC", root_path, class: 'nav-item' %>
+        <%= link_to "KWC", kwc_pages_path, class: 'nav-item' %>
         <%= link_to "Rólunk", root_path, class: 'nav-item' %>
         <%= link_to "Rendelések", orders_path, class: 'nav-item' if current_user&.admin? %>
         <%= link_to "Admin panel", admin_pages_path, class: 'nav-item' if current_user&.admin? %>
         <% if current_user.present? %>
+          <%= link_to 'Rendeléseim', my_orders_path, class: 'nav-item' %>
           <%= link_to 'Profil', profile_pages_path, class: 'nav-item' %>
         <% else %>
           <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'nav-item' %>
@@ -43,11 +44,12 @@
             </div>
           </div>
           <%= link_to "Rendelés leadás", new_order_path, class: 'mobile-nav-item' %>
-          <%= link_to "KWC", root_path, class: 'mobile-nav-item' %>
+          <%= link_to "KWC", kwc_pages_path, class: 'mobile-nav-item' %>
           <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
           <%= link_to "Rendelések", orders_path, class: 'mobile-nav-item' if current_user&.admin? %>
           <%= link_to "Admin panel", admin_pages_path, class: 'mobile-nav-item' if current_user&.admin? %>
           <% if current_user.present? %>
+            <%= link_to 'Rendeléseim', my_orders_path, class: 'mobile-nav-item' %>
             <%= link_to 'Profil', profile_pages_path, class: 'mobile-nav-item' %>
           <% else %>
             <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'mobile-nav-item', form_class: 'w-full' %>

@@ -1,0 +1,30 @@
+<div class="max-w-xl m-auto">
+  <h1 class="text-4xl font-bold mb-8">KultúrWC</h1>
+  <p>
+    Ha unod már a samponos flakon olvasgatását, és a telefonodon lévő összes játékot is kijátszottad, akkor a KultúrWC
+    segít, hogy minőségi perceket tölts ott, ahová a király is gyalog jár.
+  </p>
+  <%= form_with(model: @user, url: kwc_update_pages_path, method: :post, class: "contents",
+                data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2>Az alábbi hiba lépett fel:</h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="my-5">
+      <%= form.label 'Schönherz Szobaszám:' %>
+      <%= form.number_field :room_number, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= form.label 'Szeretnél KWC-t kapni?', class: 'block mb-2' %>
+      <%= form.switch_checkbox :kwc %>
+    </div>
+    <%= form.submit 'KWC Adatok Mentése', class: 'btn w-full' %>
+  <% end %>
+</div>

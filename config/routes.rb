@@ -6,16 +6,20 @@ Rails.application.routes.draw do
   resources :orders do
     patch :finalize, on: :member
     post :complete, on: :member
+    get :my_orders, on: :collection, as: :my
   end
 
   resources :articles
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :users, only: [:index, :show]
+  resources :users, except: :destroy
 
-  resources :pages do
+  resources :pages, only: [] do
     get :admin, on: :collection
     get :profile, on: :collection
+    get :kwc, on: :collection
+    post :kwc_update, on: :collection
+    get :kwc_list, on: :collection
   end
   root "pages#home"
 end

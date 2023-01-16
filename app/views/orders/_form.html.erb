@@ -15,8 +15,8 @@
 <% end %>
 
 <% url = action_name == 'new' ? finalize_order_path(order) : order_path(order) %>
-<%= form_with(model: order, class: "contents", url: url,
-              data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
+  <%= form_with(model: order, class: "contents", url: url,
+                data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
 
   <div class="my-5">
     <%= form.label :group %>
