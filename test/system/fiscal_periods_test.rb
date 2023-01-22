@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class FiscalPeriodsTest < ApplicationSystemTestCase
   setup do
-    @fiscal_period = fiscal_periods(:one)
+    # @fiscal_period = fiscal_periods(:one)
   end
 
   test "visiting the index" do
