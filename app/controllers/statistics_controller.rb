@@ -1,4 +1,5 @@
 class StatisticsController < ApplicationController
+  before_action :require_admin, only: [:index, :for_group]
   def index
     @group_total_prices = Group.price_for(OrderItem.all.joins(:order).where(order: {state: :complete}))
   end

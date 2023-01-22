@@ -1,4 +1,6 @@
 class KwcController < ApplicationController
+  before_action :require_login, only: [:current, :update]
+  before_action :require_admin, only: [:index]
   def current
     @user = current_user
   end
