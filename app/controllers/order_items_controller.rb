@@ -17,15 +17,6 @@ class OrderItemsController < ApplicationController
   def new
   end
 
-  def stats
-    @group_total_prices = Group.price_for(OrderItem.all.joins(:order).where(order: {state: :complete}))
-  end
-
-  def stats_for_group
-    @group = Group.find(params[:group_id])
-    @orders = Order.includes(:order_items).where(group: @group, state: :complete)
-  end
-
   def create
     @order_item = OrderItem.new(order_item_params)
     @order_item.order = @order
