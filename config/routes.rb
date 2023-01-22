@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :order_items
+  resources :order_items do
+    get :stats, on: :collection
+    get :stats_for_group, on: :collection
+  end
   resources :items
   resources :groups
   resources :orders do

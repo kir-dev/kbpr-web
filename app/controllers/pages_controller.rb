@@ -32,6 +32,8 @@ class PagesController < ApplicationController
     @user = current_user
   end
 
+
+
   private
 
   def kwc_params
