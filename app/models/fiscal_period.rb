@@ -1,0 +1,2 @@
+class FiscalPeriod < ApplicationRecord
+end
