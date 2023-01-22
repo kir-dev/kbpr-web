@@ -17,12 +17,12 @@ Rails.application.routes.draw do
 
   resources :users, except: :destroy
 
-  resources :pages, only: [] do
+  resources :pages do
     get :admin, on: :collection
     get :profile, on: :collection
-    get :kwc, on: :collection
-    post :kwc_update, on: :collection
-    get :kwc_list, on: :collection
+  end
+  resources :kwc, only:[:update, :index] do
+    get :current, on: :collection, as: :current
   end
   root "pages#home"
 end
