@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :order_items do
-    get :stats, on: :collection
-    get :stats_for_group, on: :collection
-  end
+  resources :order_items
   resources :items
   resources :groups
   resources :orders do
@@ -23,6 +20,9 @@ Rails.application.routes.draw do
   end
   resources :kwc, only:[:update, :index] do
     get :current, on: :collection, as: :current
+  end
+  resources :statistics, only: [:index] do
+    get :for_group, on: :collection
   end
   root "pages#home"
 end
