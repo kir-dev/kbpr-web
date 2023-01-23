@@ -4,4 +4,8 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true
+
+  def name_with_price
+    "#{name} (#{price} JMF)"
+  end
 end

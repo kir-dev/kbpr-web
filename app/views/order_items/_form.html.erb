@@ -30,8 +30,8 @@
     </div>
 
     <div class="my-5">
-      <%= form.label :item %>
-      <%= form.select :item_id, Item.all.map { |item| ["#{item.name} (#{item.price} JMF)", item.id] },
+      <%= form.label :item_id, 'Termék' %>
+      <%= form.select :item_id, Item.all.map { |item| [item.name_with_price, item.id] },
                       { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
                       class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
