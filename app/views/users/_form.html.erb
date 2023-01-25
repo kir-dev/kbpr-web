@@ -1,6 +1,6 @@
 <%= form_with(model: user, method: :patch , data: {turbo: false}, builder: CustomFormBuilder, class: "contents") do |form| %>
   <% if user.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <div id="error_explanation" class="error-explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="my-5">
+  <div class="row">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "text-area" %>
   </div>
 
-  <div class="my-5">
+  <div class="row">
     <%= form.label :email %>
-    <%= form.text_field :email, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :email, class: "text-area" %>
   </div>
 
-  <div class="my-5 flex flex-col ">
+  <div class="row flex flex-col ">
     <%= form.label :admin, class: 'mb-2' %>
     <%= form.switch_checkbox :admin %>
   </div>

@@ -121,10 +121,50 @@
         @apply flex gap-4 justify-between text-xl flex-wrap;
     }
 
-    .row {
+    .row-old {
         @apply flex gap-4 justify-between text-xl;
     }
 
+    .row {
+        @apply my-5;
+    }
+
+    .oneline {
+        @apply flex justify-between items-center flex-wrap
+            bg-bg-dark p-3 rounded-lg
+            my-2
+            /*border-b-4 border-primary*/
+        ;
+    }
+
+    .badge {
+        @apply bg-primary p-2 rounded-lg font-bold;
+    }
+
+
+    .underline {
+        @apply border-b-4 border-primary;
+    }
+
+    .text-area {
+        @apply text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full;
+    }
+
+    .select {
+        @apply text-area;
+    }
+
+    .number-field {
+        @apply text-area
+    }
+
+    .row-with-checkbox {
+        @apply flex justify-between mb-4;
+    }
+
+    .error-explanation {
+        @apply bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mb-8;
+    }
 }
 
 body {

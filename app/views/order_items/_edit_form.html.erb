@@ -2,7 +2,7 @@
   <% form_with model: order_item, builder: CustomFormBuilder do |form| %>
     <div class="mt-6 bg-secondary p-4 rounded-md">
       <% if order_item.errors.any? %>
-        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <div id="error_explanation" class="error-explanation">
           <h2>A rendelés hibás</h2>
 
           <ul class="list-disc ml-5">
@@ -13,22 +13,24 @@
         </div>
       <% end %>
 
-      <div class="my-5">
+      <div class="row">
         <%= form.label :link %>
-        <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= form.text_field :link, class: "text-area" %>
       </div>
 
-      <div class="my-5">
+      <div class="row">
         <%= form.label :quantity %>
-        <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= form.number_field :quantity, class: "number-field" %>
       </div>
 
-      <div class="my-5">
+      <div class="row">
         <%= form.label :item %>
-        <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] }, { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] },
+                        { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
+                        class: "select" %>
       </div>
 
-      <div class="my-5">
+      <div class="row">
         <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
         <%= form.switch_checkbox :laminated, dark: true%>
       </div>

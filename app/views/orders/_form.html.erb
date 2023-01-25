@@ -1,5 +1,5 @@
 <% if order.errors.any? %>
-  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mb-8">
+  <div id="error_explanation" class="error-explanation">
     <h2>A rendelés hibás</h2>
 
     <ul class="list-disc ml-5">
@@ -18,24 +18,25 @@
   <%= form_with(model: order, class: "contents", url: url,
                 data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
 
-  <div class="my-5">
+  <div class="row">
     <%= form.label :group %>
-    <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :group_id, Group.all.map { |group| [group.name, group.id] },
+                    { prompt: "-- Válaszd ki a köröd! --" }, class: "select" %>
   </div>
 
-  <div class="my-5">
+  <div class="row">
     <%= form.label 'Egyéb megjegyzés a papírméretre vonatkozóan' %>
-    <%= form.text_area :comment, rows: 4, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_area :comment, rows: 4, class: "text-area" %>
   </div>
 
 
-  <div class="my-5">
-    <%= form.label 'Én szeretném nyomtatni', class: 'block mb-2' %>
+  <div class="row">
+    <%= form.label 'Én szeretném nyomtatni', class: 'label block mb-2' %>
     <%= form.switch_checkbox :printed_by_me %>
   </div>
 
   <div>
-    <div class="flex justify-between mb-4">
+    <div class="row-with-checkbox">
       <div>
         <p>Elolvastam a
           <a class="text-primary hover:underline" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási
@@ -45,22 +46,22 @@
       <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
     </div>
 
-    <div class="flex justify-between mb-4">
+    <div class="row-with-checkbox">
       <%= form.label :has_sch_logo, class: 'label' %>
       <%= form.check_box :has_sch_logo, class: "checkbox" %>
     </div>
 
-    <div class="flex justify-between mb-4">
+    <div class="row-with-checkbox">
       <%= form.label :has_right_format, class: 'label' %>
       <%= form.check_box :has_right_format, class: "checkbox" %>
     </div>
 
-    <div class="flex justify-between mb-4">
+    <div class="row-with-checkbox ">
       <%= form.label :has_date, class: 'label' %>
       <%= form.check_box :has_date, class: "checkbox" %>
     </div>
 
-    <div class="mt-6">
+    <div class="mt-8">
       <%= form.submit 'Rendelés leadása', class: "btn w-full" %>
     </div>
 <% end %>

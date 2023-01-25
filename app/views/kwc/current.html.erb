@@ -7,7 +7,7 @@
   <%= form_with(model: @user, url: kwc_path(@user), class: "contents",
                 data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
     <% if @user.errors.any? %>
-      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <div id="error_explanation" class="error-explanation">
         <h2>Az alábbi hiba lépett fel:</h2>
 
         <ul>
@@ -17,11 +17,11 @@
         </ul>
       </div>
     <% end %>
-    <div class="my-5">
+    <div class="row">
       <%= form.label 'Schönherz Szobaszám:' %>
-      <%= form.number_field :room_number, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.number_field :room_number, class: "number-field" %>
     </div>
-    <div class="my-5">
+    <div class="row">
       <%= form.label 'Szeretnél KWC-t kapni?', class: 'block mb-2' %>
       <%= form.switch_checkbox :kwc %>
     </div>
