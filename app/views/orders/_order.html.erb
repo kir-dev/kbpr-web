@@ -2,65 +2,60 @@
   <div class="row">
     <h3 class="text-4xl mb-4">Adatok</h3>
   </div>
-  <p class="row">
-    <span>Állapot</span>
-    <strong>
-      <%= Order.human_enum_name(:states, order.state) %>
-    </strong>
-  </p>
-  <p class="row">
-    <span>Megrendelő</span>
-    <strong>
-      <%= order.user.name %>
-    </strong>
-  </p>
+  <div class="">
+    <p class="oneline">
+      <span>Állapot</span>
+      <strong>
+        <%= Order.human_enum_name(:states, order.state) %>
+      </strong>
+    </p>
+    <p class="row oneline ">
+      <span>Megrendelő</span>
+      <strong>
+        <%= order.user.name %>
+      </strong>
+    </p>
 
-  <p class="row">
-    <span>Kör</span>
-    <strong>
-      <%= order.group&.name %>
-    </strong>
-  </p>
+    <p class="row oneline">
+      <span>Kör</span>
+      <strong>
+        <%= order.group&.name %>
+      </strong>
+    </p>
 
-  <p class="row">
-    <span>Leadva</span>
-    <strong>
-      <%= I18n.l(order.finalized_at) if order.finalized_at %>
-    </strong>
-  </p>
+    <p class="row oneline">
+      <span>Leadás ideje</span>
+      <strong>
+        <%= I18n.l(order.finalized_at) if order.finalized_at %>
+      </strong>
+    </p>
 
-  <p class="row">
-    <span>Megjegyzés</span>
-    <strong>
-      <%= order.comment.present? ? order.comment : '-' %>
-    </strong>
-  </p>
+    <p class="row oneline">
+      <span>Megjegyzés</span>
+      <strong>
+        <%= order.comment.present? ? order.comment : '-' %>
+      </strong>
+    </p>
 
-  <p class="row">
-    <span>Én nyomtatom</span>
-    <%= order.printed_by_me ? 'Igen' : 'Nem' %>
-  </p>
-
+    <p class="row oneline">
+      <span>Én nyomtatom</span>
+      <%= order.printed_by_me ? 'Igen' : 'Nem' %>
+    </p>
+  </div>
   <h3 class="text-4xl my-6">Termékek</h3>
   <% order.order_items.each do |order_item| %>
-    <div class="mb-4">
-   <span class="text-2xl">
-     <%= order_item.item.name %>
-   </span>
-
-      <p class="row">
-        <span>Darabszám</span>
-        <strong>
-          <%= order_item.quantity %>
-        </strong>
-      </p>
-      <p class="row">
-        <span>Lamináljuk</span>
-        <%= order_item.laminated ? 'Igen' : 'Nem' %>
-      </p>
+    <div class="row oneline">
+     <span class="text-2xl">
+       <%= order_item.item.name %> x <%= order_item.quantity %>
+     </span>
+      <% if order_item.laminated? %>
+      <span class="badge">
+        Laminálva
+      </span>
+      <% end %>
     </div>
   <% end %>
-  <div class="row justify-end mt-4 flex-wrap">
+  <div class="row flex justify-end flex-wrap">
     <% if action_name != "show" %>
       <%= button_to "Törlés", order_path(order), method: :delete, form: { data: { turbo_confirm: 'Biztosan törlöd a rendelést?' } }, class: "btn mr-4 btn btn-outline" %>
 

@@ -7,7 +7,7 @@
   <h2 class="text-2xl">Termék hozzáadás</h2>
   <%= form_with(model: order_item, url: url, class: "contents", builder: CustomFormBuilder) do |form| %>
     <% if order_item.errors.any? %>
-      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <div id="error_explanation" class="error-explanation">
         <h2>A rendelés hibás</h2>
 
         <ul class="list-disc ml-5">
@@ -19,24 +19,24 @@
     <% end %>
 
 
-    <div class="my-5">
+    <div class="row">
       <%= form.label :link %>
       <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
-    <div class="my-5">
+    <div class="row">
       <%= form.label :quantity %>
       <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
-    <div class="my-5">
+    <div class="row">
       <%= form.label :item_id, 'Termék' %>
       <%= form.select :item_id, Item.all.map { |item| [item.name_with_price, item.id] },
                       { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
                       class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
-    <div class="my-5">
+    <div class="row">
       <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
       <%= form.switch_checkbox :laminated %>
     </div>

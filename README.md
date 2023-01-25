@@ -1,4 +1,20 @@
+
 # README
+
+margin
+mid 5
+large 8
+
+oldalak szélésségét egységesíteni kéne?
+furán néz ki, ha van két szélesség?
+
+user page még lehet designolni
+
+hírek oldallal is lehetne foglalkozni
+
+rólunk is
+
+## About the project
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
