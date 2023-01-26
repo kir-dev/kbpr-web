@@ -1,6 +1,6 @@
 <div id="<%= dom_id order %>" class="mt-6 bg-secondary rounded-md m-auto p-4">
   <div class="row">
-    <h3 class="text-4xl mb-4">Adatok</h3>
+    <h3 class="text-4xl mb-4"><%= order.group.name %> rendelése</h3>
   </div>
   <div class="">
     <p class="oneline">
@@ -13,13 +13,6 @@
       <span>Megrendelő</span>
       <strong>
         <%= order.user.name %>
-      </strong>
-    </p>
-
-    <p class="row oneline">
-      <span>Kör</span>
-      <strong>
-        <%= order.group&.name %>
       </strong>
     </p>
 
@@ -44,15 +37,23 @@
   </div>
   <h3 class="text-4xl my-6">Termékek</h3>
   <% order.order_items.each do |order_item| %>
-    <div class="row oneline">
-     <span class="text-2xl">
-       <%= order_item.item.name %> x <%= order_item.quantity %>
-     </span>
-      <% if order_item.laminated? %>
-      <span class="badge">
-        Laminálva
-      </span>
-      <% end %>
+    <div class=" bg-bg-dark rounded-md p-2 my-2">
+      <div class="flex justify-between items-center">
+       <span class="text-2xl">
+         <%= order_item.item.name %>
+         <% if order_item.laminated? %>
+        <span class="badge">
+          Laminálva
+        </span>
+        <% end %>
+       </span>
+          <span class="text-2xl">
+         <%= order_item.quantity %> db
+       </span>
+      </div>
+      <div class="text-2xl mt-2">
+        <%= link_to order_item.link,  order_item.link, target: '_blank', class: 'link'%>
+      </div>
     </div>
   <% end %>
   <div class="row flex justify-end flex-wrap">

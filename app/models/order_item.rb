@@ -3,7 +3,7 @@ class OrderItem < ApplicationRecord
   belongs_to :item
 
   validates :price, presence: true
-  validates :link, presence: true
+  validates :link, presence: true, url: { public_suffix: true }
   validates :laminated, inclusion: [true, false]
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 

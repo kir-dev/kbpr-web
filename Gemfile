@@ -83,3 +83,5 @@ group :test do
   gem "webdrivers"
   gem "factory_bot_rails"
 end
+
+gem "validate_url", "~> 1.0"
