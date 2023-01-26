@@ -138,7 +138,7 @@
     }
 
     .badge {
-        @apply bg-primary p-2 rounded-lg font-bold;
+        @apply bg-primary p-2 rounded-lg font-bold text-sm;
     }
 
 
@@ -164,6 +164,10 @@
 
     .error-explanation {
         @apply bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3 mb-8;
+    }
+
+    .link {
+        @apply text-primary hover:underline hover:border-0
     }
 }
 
