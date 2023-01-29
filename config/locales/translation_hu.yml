@@ -111,3 +111,6 @@ hu:
       item:
         name: Név
         price: Ár
+      fiscal_period:
+        start_at: Kezdési idő
+        end_at: Befejezési idő

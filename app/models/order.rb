@@ -18,7 +18,17 @@ class Order < ApplicationRecord
     paper_sizes.map { |k, v| [I18n.translate("activerecord.attributes.order.paper_size_enum.#{k}"), v] }
   end
 
+  def self.with_total_price
+    joins(:order_items)
+      .group('orders.id')
+      .select('orders.*',
+              'SUM(order_items.price*order_items.quantity) as total_price')
+  end
+
   def total_price
+    attribute_total_price =  attributes['total_price']
+    return attribute_total_price if attribute_total_price
+
     order_items.sum do |order_item|
       order_item.price * order_item.quantity
     end
