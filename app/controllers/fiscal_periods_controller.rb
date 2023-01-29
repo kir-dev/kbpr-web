@@ -25,7 +25,7 @@ class FiscalPeriodsController < ApplicationController
 
     respond_to do |format|
       if @fiscal_period.save
-        format.html { redirect_to fiscal_period_url(@fiscal_period), notice: "Fiscal period was successfully created." }
+        format.html { redirect_to fiscal_period_url(@fiscal_period), notice: "Költési időszak sikeresen létrehozva!" }
         format.json { render :show, status: :created, location: @fiscal_period }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class FiscalPeriodsController < ApplicationController
   def update
     respond_to do |format|
       if @fiscal_period.update(fiscal_period_params)
-        format.html { redirect_to fiscal_period_url(@fiscal_period), notice: "Fiscal period was successfully updated." }
+        format.html { redirect_to fiscal_period_url(@fiscal_period), notice: "Költési időszak sikeresen frissítve!" }
         format.json { render :show, status: :ok, location: @fiscal_period }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class FiscalPeriodsController < ApplicationController
     @fiscal_period.destroy
 
     respond_to do |format|
-      format.html { redirect_to fiscal_periods_url, notice: "Fiscal period was successfully destroyed." }
+      format.html { redirect_to fiscal_periods_url, notice: "Költési időszak sikeresen törölve!" }
       format.json { head :no_content }
     end
   end

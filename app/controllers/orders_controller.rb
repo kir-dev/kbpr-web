@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def my_orders
-    @orders = current_user.orders
+    @orders = current_user.orders.where.not(state: :draft)
   end
 
   # GET /orders/1 or /orders/1.json

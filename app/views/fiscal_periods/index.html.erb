@@ -1,11 +1,7 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Fiscal periods</h1>
-    <%= link_to 'New fiscal period', new_fiscal_period_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Költési időszak</h1>
+    <%= link_to 'Költési időszak felvétele', new_fiscal_period_path, class: "btn" %>
   </div>
 
   <div id="fiscal_periods" class="min-w-full">
