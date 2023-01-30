@@ -11,6 +11,11 @@
     </p>
 
     <p class="my-5">
+      <strong class="block font-medium mb-1">Tag:</strong>
+      <%= user.member ? 'Igen' : 'Nem' %>
+    </p>
+
+    <p class="my-5">
       <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.email') %>:</strong>
       <%= user.email %>
     </p>

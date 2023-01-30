@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def require_admin
     render :forbidden unless current_user&.admin?
   end
+
+  def require_member
+    render :forbidden unless current_user&.admin? || current_user&.member?
+  end
 end
