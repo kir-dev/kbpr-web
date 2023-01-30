@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :group, optional: true
+  belongs_to :completed_by, class_name: 'User'
   has_many :order_items, -> { order(created_at: :desc) }
   has_many :items, through: :order_items
 

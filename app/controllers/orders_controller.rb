@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
   end
 
   def complete
-    @order.update!(state: :complete, completed_at: Time.current)
+    @order.update!(state: :complete, completed_at: Time.current, completed_by: current_user)
     redirect_to orders_url, notice: "A rendelés elkészült!"
   end
 

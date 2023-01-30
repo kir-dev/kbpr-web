@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :omniauthable, omniauth_providers: [:authsch]
   has_many :orders
+  has_many :completed_orders, class_name: 'Order', foreign_key: 'completed_by_id'
   validates :room_number, presence: true, if: -> { kwc }
   def self.from_omniauth(access_token)
     data = access_token.extra.raw_info

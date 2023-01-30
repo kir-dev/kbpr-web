@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_30_171613) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_191748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,6 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_171613) do
     t.boolean "deleted", default: false
     t.datetime "finalized_at"
     t.datetime "completed_at"
+    t.bigint "completed_by_id"
+    t.index ["completed_by_id"], name: "index_orders_on_completed_by_id"
     t.index ["group_id"], name: "index_orders_on_group_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -133,4 +135,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_171613) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "groups"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", column: "completed_by_id"
 end
