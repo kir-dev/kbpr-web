@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize complete]
   before_action :require_login
-  before_action :require_admin, except: [:finalize, :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item]
+  before_action :require_member, only: [:finalize, :index]
+  before_action :require_admin, except: [ :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item,
+                                          :finalize, :index]
   # GET /orders or /orders.json
   def index
     search_attributes = {state: params.dig(:order, :state)|| :processing}
