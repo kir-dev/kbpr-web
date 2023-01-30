@@ -11,7 +11,9 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: postgres
+    build:
+      context: .
+      dockerfile: PostgresDockerfile
     restart: always
     volumes:
       - kbpr_db:/var/lib/postgresql/data
