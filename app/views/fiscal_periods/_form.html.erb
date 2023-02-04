@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="row">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "text-area" %>
+  </div>
+
+  <div class="row">
     <%= form.label :start_at %>
     <%= form.datetime_field :start_at, class: "datetime-field" %>
   </div>

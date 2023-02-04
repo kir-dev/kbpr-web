@@ -3,7 +3,7 @@ class FiscalPeriodsController < ApplicationController
 
   # GET /fiscal_periods or /fiscal_periods.json
   def index
-    @fiscal_periods = FiscalPeriod.all
+    @fiscal_periods = FiscalPeriod.all.order(id: :desc)
   end
 
   # GET /fiscal_periods/1 or /fiscal_periods/1.json
@@ -65,6 +65,6 @@ class FiscalPeriodsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fiscal_period_params
-      params.require(:fiscal_period).permit(:start_at, :end_at)
+      params.require(:fiscal_period).permit(:start_at, :end_at, :name)
     end
 end
