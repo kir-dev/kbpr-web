@@ -35,7 +35,7 @@ item_params = [{ name: 'A4-es plakát', price: 100 },
 
 item_params.each do |item_param|
   item = Item.create!(item_param)
-  OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, link: "www.link.url", order: order)
+  OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, link: "https://www.google.com", order: order)
 end
 
 
