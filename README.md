@@ -1,40 +1,26 @@
 
 # README
 
-margin
-mid 5
-large 8
+## How to develop locally
 
-oldalak szélésségét egységesíteni kéne?
-furán néz ki, ha van két szélesség?
+### Database setup
 
-user page még lehet designolni
+Change to the postgres user on the os
+Create a PostgreSQL super user role that has the name of your OS user and set no password:
+Go back to your original user.
+```shell
+sudo su postgres
+createuser -s <<YOUR_USERNAME>>
+exit
+```
 
-hírek oldallal is lehetne foglalkozni
+### AuthSch login
 
-rólunk is
+```shell
+cp .env.example .env
+```
+Set the client id and secret from the AuthSch developer console.
 
-## About the project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

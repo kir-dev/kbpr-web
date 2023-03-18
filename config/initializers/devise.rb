@@ -273,8 +273,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :authsch,
-                  Rails.application.credentials.authsch_client_id,
-                  Rails.application.credentials.authsch_client_secret,
+                  Rails.application.credentials.authsch_client_id || ENV['authsch_client_id'],
+                  Rails.application.credentials.authsch_client_secret || ENV['authsch_client_secret'],
                   scope: 'basic mail displayName',
                   provider_ignores_state: true
 

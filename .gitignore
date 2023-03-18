@@ -35,4 +35,6 @@
 
 /config/credentials/development.key
 .idea
+.idea/*
 /config/credentials/=development.key
+.env
