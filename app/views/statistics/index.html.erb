@@ -14,15 +14,15 @@
     <div class="flex flex-col text-white hidden" data-stat-target="dateForm">
       <div class="row">
         <%= form.label 'Kezdési idő' %>
-        <%= form.datetime_field :start_at, value: @fiscal_period.start_at&.to_fs(:db),
-                                class: "datetime-field",
-                                'data-stat-target': 'startDate' %>
+        <%= form.date_field :start_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
+            class: "datetime-field",
+            'data-stat-target': 'startDate' %>
       </div>
       <div class="row">
         <%= form.label 'Befejezési idő' %>
-        <%= form.datetime_field :end_at, value: @fiscal_period.end_at&.to_fs(:db),
-                                class: "datetime-field ",
-                                'data-stat-target': 'endDate' %>
+        <%= form.date_field :end_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
+                                      class: "datetime-field ",
+                                      'data-stat-target': 'endDate' %>
       </div>
     </div>
 
