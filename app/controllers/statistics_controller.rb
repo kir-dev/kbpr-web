@@ -2,7 +2,6 @@ class StatisticsController < ApplicationController
   before_action :require_admin, only: [:index, :for_group]
 
   def index
-
     @fiscal_periods = FiscalPeriod.all.order(id: :desc)
     @fiscal_periods = @fiscal_periods.to_a.unshift(FiscalPeriod.new(id: '-1', name: 'Egyedi'))
     @fiscal_period = search_fiscal_period
@@ -10,7 +9,7 @@ class StatisticsController < ApplicationController
       OrderItem.all.joins(:order)
                .where(order: { state: :complete })).
       where('orders.finalized_at BETWEEN :start and :end',
-            start: @fiscal_period.start_at, end: @fiscal_period.end_at)
+            start: @fiscal_period.start_at.beginning_of_day, end: @fiscal_period.end_at.end_of_day)
   end
 
   def for_group
