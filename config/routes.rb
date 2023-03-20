@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   resources :statistics, only: [:index] do
     get :for_group, on: :collection
+    get :for_group_member, on: :collection
   end
   root "pages#home"
 end
