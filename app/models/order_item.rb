@@ -6,6 +6,7 @@ class OrderItem < ApplicationRecord
   validates :link, presence: true, url: { public_suffix: true }
   validates :laminated, inclusion: [true, false]
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :comment, presence: true, if: -> { item.id==1 }
 
   def self.with_total_price
     select('sum(price*quantity) as total_price', '*').group(:id)

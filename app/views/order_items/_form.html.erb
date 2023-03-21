@@ -33,7 +33,13 @@
       <%= form.label :item_id, 'Termék' %>
       <%= form.select :item_id, Item.all.map { |item| [item.name_with_price, item.id] },
                       { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
-                      class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+                      class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full",
+                      id: "selector", :onChange=>"javascript: commentVisibility();" %>
+    </div>
+
+    <div class="row" id="commentfield">
+      <%= form.label :comment %>
+      <%= form.text_field :comment, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
     <div class="row">
@@ -47,3 +53,18 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  function commentVisibility(){
+      const selector = document.getElementById("selector");
+      const commentfield = document.getElementById("commentfield");
+      console.log(selector.value);
+      if(selector.value==1){
+        commentfield.style.display = "block";
+      }else{
+        commentfield.style.display = "none";
+      }
+  }
+
+  commentVisibility();
+</script>

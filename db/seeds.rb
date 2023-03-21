@@ -28,14 +28,16 @@ group_names.each { |group_name| Group.create!(name: group_name) }
 user = User.create!(name: 'Admin', email: 'admin@admin.com', admin: true)
 order = Order.create!(group: Group.first, user: user)
 
-item_params = [{ name: 'A4-es plakát', price: 100 },
+item_params = [{ name: 'Egyéb', price: 0 },
+               { name: 'A4-es plakát', price: 100 },
                { name: 'A3-es plakát', price: 200 },
                { name: 'A2-es plakát', price: 400 },
                { name: 'matrica', price: 5 }]
 
 item_params.each do |item_param|
   item = Item.create!(item_param)
-  OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, link: "https://www.google.com", order: order)
+  comment = "saját termék valami konkrétabb leírással" if item.id==1
+  OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, comment: comment, link: "https://www.google.com", order: order)
 end
 
 
