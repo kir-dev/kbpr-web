@@ -17,6 +17,12 @@
         hover:-translate-y-1 hover:shadow-md hover:shadow-secondary text-center;
     }
 
+    .btn-file-upload {
+        @apply font-bold text-dark  bg-primary rounded-xl
+        py-1 px-3 font-medium cursor-pointer inline-block
+        hover:shadow hover:-translate-y-0.5 hover:shadow-secondary text-center
+    }
+
     .btn-outline {
         @apply btn bg-transparent text-light;
     }
@@ -172,6 +178,10 @@
 
     .link {
         @apply text-primary hover:underline hover:border-0
+    }
+
+    .file-form-field{
+        @apply text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full file:btn-file-upload bg-white
     }
 }
 

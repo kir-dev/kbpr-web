@@ -1,11 +1,17 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :item
+  has_one_attached :order_image do |attachable|
+    attachable.variant :thumb, resize_to_fit: [256, 256]
+  end
 
   validates :price, presence: true
   validates :link, presence: true, url: { public_suffix: true }
   validates :laminated, inclusion: [true, false]
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validate :image_acceptable
+
+  ACCEPTABLE_TYPES = ["image/jpeg", "image/png"]
   validates :comment, presence: true, if: -> { item.id==1 }
 
   def self.with_total_price
@@ -19,5 +25,24 @@ class OrderItem < ApplicationRecord
       .to_a.map do |row|
       OpenStruct.new(group: row.order.group, price: row.group_total_price)
     end
+  end
+
+  private
+
+  def image_acceptable
+    # Image needs to be attached
+    unless order_image.attached?
+      errors.add(:order_image, "needs to be uploaded")
+      return
+    end
+
+    unless order_image.blob.byte_size <= 10.megabyte
+      errors.add(:main_image, "is too big")
+    end
+
+    unless ACCEPTABLE_TYPES.include?(order_image.content_type)
+      errors.add(:main_image, "must be in a permitted format")
+    end
+
   end
 end
