@@ -8,6 +8,8 @@ services:
     environment:
       - RAILS_ENV=production
       - RAILS_SERVE_STATIC_FILES=true
+    volumes:
+      - kbpr_image_folder:/kbpr-web/storage/
     depends_on:
       - postgres
     networks:
@@ -29,4 +31,6 @@ networks:
   kbpr-net:
 volumes:
   kbpr_db:
+    external: true
+  kbpr_image_folder:
     external: true
