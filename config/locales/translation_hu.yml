@@ -105,7 +105,7 @@ hu:
       order_item:
         quantity: Mennyiség
         item: Termék
-        link: Plakát URL
+        order_image: Képfájl
         laminated: Laminált
         price: Ár
       item:

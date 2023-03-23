@@ -32,16 +32,16 @@ class OrderItem < ApplicationRecord
   def image_acceptable
     # Image needs to be attached
     unless order_image.attached?
-      errors.add(:order_image, "needs to be uploaded")
+      errors.add(:order_image, "feltöltése kötelező")
       return
     end
 
     unless order_image.blob.byte_size <= 10.megabyte
-      errors.add(:main_image, "is too big")
+      errors.add(:order_image, "túl nagy")
     end
 
     unless ACCEPTABLE_TYPES.include?(order_image.content_type)
-      errors.add(:main_image, "must be in a permitted format")
+      errors.add(:order_image, "formátuma nem megfelelő")
     end
 
   end
