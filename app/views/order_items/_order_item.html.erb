@@ -1,11 +1,8 @@
 <%= turbo_frame_tag "order_item_frame_#{order_item.id}", target: '#order_items_frame' do %>
   <div class="mt-6 bg-secondary p-4 rounded-md">
+    <%= image_tag order_item.order_image.variant(:thumb) %>
     <div class="text-2xl mb-4">
       <%= order_item.item.name %>
-    </div>
-    <div class="order_item_row">
-      <%= label_tag :link, t('activerecord.attributes.order_item.link') %>
-      <%= order_item.link %>
     </div>
     <div class="order_item_row">
       <%= label_tag t('activerecord.attributes.order_item.quantity') %>

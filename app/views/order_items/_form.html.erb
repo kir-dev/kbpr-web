@@ -20,8 +20,9 @@
 
 
     <div class="row">
-      <%= form.label :link %>
-      <%= form.text_field :link, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.label :order_image %>
+      <%= form.file_field :order_image, accept: "image/jpeg, image/png", class: "file-form-field" %>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG (MAX. 10MB).</p>
     </div>
 
     <div class="row">

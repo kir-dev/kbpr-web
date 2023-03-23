@@ -56,7 +56,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_item_params
-    params.require(:order_item).permit(:link, :quantity, :item_id, :laminated, :comment, :price)
+    params.require(:order_item).permit(:link, :quantity, :item_id, :laminated, :comment, :price, :order_image)
   end
 
   def broadcast_order_update
