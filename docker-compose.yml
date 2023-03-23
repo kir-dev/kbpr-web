@@ -10,6 +10,8 @@ services:
       - RAILS_SERVE_STATIC_FILES=true
     depends_on:
       - postgres
+    networks:
+      - kbpr-net
   postgres:
     build:
       context: .
@@ -21,6 +23,10 @@ services:
       - POSTGRES_USER=kbpr_web
     env_file:
       - .postgres_password
+    networks:
+      - kbpr-net
+networks:
+  kbpr-net:
 volumes:
   kbpr_db:
     external: true
