@@ -37,7 +37,10 @@ item_params = [{ name: 'Egyéb', price: 0 },
 item_params.each do |item_param|
   item = Item.create!(item_param)
   comment = "saját termék valami konkrétabb leírással" if item.id==1
-  OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, comment: comment, link: "https://www.google.com", order: order)
+  order_item = OrderItem.new(item: item, quantity: 1, price: item.price, laminated: false,
+                             comment: comment, order: order)
+  order_item.order_image.attach(io: File.open('./app/assets/images/cat.png'), filename: 'cat.png')
+  order_item.save!
 end
 
 FiscalPeriod.create!(start_at: 1.month.ago, end_at: 1.month.from_now)
