@@ -114,3 +114,4 @@ hu:
       fiscal_period:
         start_at: Kezdési idő
         end_at: Befejezési idő
+        name: Név

@@ -1,13 +1,16 @@
 class StatisticsController < ApplicationController
-  before_action :require_admin, only: [:index, :for_group, :for_group_member]
-  def index
-    @fiscal_period = fiscal_period_id ? FiscalPeriod.find(fiscal_period_id):FiscalPeriod.last
 
+  before_action :require_admin, only: [:index, :for_group, :for_group_member]
+  
+  def index
+    @fiscal_periods = FiscalPeriod.all.order(id: :desc)
+    @fiscal_periods = @fiscal_periods.to_a.unshift(FiscalPeriod.new(id: '-1', name: 'Egyedi'))
+    @fiscal_period = search_fiscal_period
     @group_total_prices = Group.price_for(
       OrderItem.all.joins(:order)
-               .where(order: {state: :complete})).
+               .where(order: { state: :complete })).
       where('orders.finalized_at BETWEEN :start and :end',
-            start: @fiscal_period.start_at, end: @fiscal_period.end_at)
+            start: @fiscal_period.start_at.beginning_of_day, end: @fiscal_period.end_at.end_of_day)
   end
 
   def for_group
@@ -63,6 +66,15 @@ class StatisticsController < ApplicationController
       @users[user] ||= {}
       @users[user][item] ||= 0
       @users[user][item] = @users[user][item] + order_item.quantity
+  end
+
+  def search_fiscal_period
+    if fiscal_period_id == '-1'
+      FiscalPeriod.new(id: -1, start_at: params[:start_at], end_at: params[:end_at])
+    elsif fiscal_period_id.present?
+      FiscalPeriod.find(fiscal_period_id)
+    else
+      FiscalPeriod.last
     end
   end
 end

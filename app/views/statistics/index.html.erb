@@ -1,10 +1,31 @@
 <div class="max-w-xl m-auto">
   <%= form_with url: statistics_path, method: :get,
-                class: 'rounded-md bg-secondary py-4 px-4 mb-4 flex justify-between text-black gap-4' do |form| %>
-    <%= form.select :fiscal_period_id, FiscalPeriod.all.map { |fiscal_period|
-      ["#{fiscal_period.start_at.year} - #{fiscal_period.end_at.year}", fiscal_period.id] },
+                class: 'rounded-md bg-secondary py-4 px-4 mb-4 flex flex-col justify-between text-black gap-4 flex-wrap',
+                html: { 'data-controller': 'stat' },
+                data: { turbo: false } do |form| %>
+    <%= form.label 'Költési időszak', class: 'text-white' %>
+    <%= form.select :fiscal_period_id, @fiscal_periods.map { |fiscal_period|
+      ["#{fiscal_period.name} #{fiscal_period.start_at&.year} - #{fiscal_period.end_at&.year}", fiscal_period.id] },
                     { selected: @fiscal_period.id, prompt: '-- Válassz időszakot--' },
-                    { class: 'grow select mt-0' } %>
+                    { class: 'grow select mt-0',
+                      'data-stat-target': 'select',
+                      'data-action': 'stat#change' } %>
+
+    <div class="flex flex-col text-white hidden" data-stat-target="dateForm">
+      <div class="row">
+        <%= form.label 'Kezdési idő' %>
+        <%= form.date_field :start_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
+            class: "datetime-field",
+            'data-stat-target': 'startDate' %>
+      </div>
+      <div class="row">
+        <%= form.label 'Befejezési idő' %>
+        <%= form.date_field :end_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
+                                      class: "datetime-field ",
+                                      'data-stat-target': 'endDate' %>
+      </div>
+    </div>
+
     <%= form.submit "Keresés", class: 'btn' %>
   <% end %>
   <div class="rounded-md bg-secondary py-2 px-4 mb-4 flex justify-between">
