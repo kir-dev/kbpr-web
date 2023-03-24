@@ -45,6 +45,8 @@ class OrderItemsController < ApplicationController
     broadcast_order_update
   end
 
+  def order_image_input; end
+
   private
 
   def set_order
