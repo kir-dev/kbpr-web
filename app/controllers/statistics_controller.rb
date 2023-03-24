@@ -36,11 +36,11 @@ class StatisticsController < ApplicationController
   end
 
   def for_user_index
-    user_stat()
+    user_stat
   end
 
   def for_user
-    user_stat()
+    user_stat
     @user = User.find(params[:user_id])
     @stat = @users[@user]
   end
