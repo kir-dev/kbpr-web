@@ -40,5 +40,7 @@ item_params.each do |item_param|
   OrderItem.create!(item: item, quantity: 1, price: item.price, laminated: false, comment: comment, link: "https://www.google.com", order: order)
 end
 
+FiscalPeriod.create!(start_at: 1.month.ago, end_at: 1.month.from_now)
+
 
 

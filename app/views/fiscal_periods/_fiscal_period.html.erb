@@ -1,4 +1,10 @@
 <div id="<%= dom_id fiscal_period %>">
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Név</strong>
+    <%= fiscal_period.name || '-' %>
+  </p>
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Kezdési idő</strong>
     <%= fiscal_period.start_at %>

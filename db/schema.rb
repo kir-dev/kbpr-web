@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_172257) do
     t.datetime "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "groups", force: :cascade do |t|
