@@ -1,0 +1,20 @@
+<div class="max-w-xl m-auto">
+  <%= form_with url: statistics_users_path, method: :get,
+                class: 'rounded-md bg-secondary py-4 px-4 mb-4 flex justify-between text-black gap-4' do |form| %>
+    <%= form.select :fiscal_period_id, FiscalPeriod.all.map { |fiscal_period|
+      ["#{fiscal_period.start_at.year} - #{fiscal_period.end_at.year}", fiscal_period.id] },
+                    { selected: @fiscal_period.id, prompt: '-- Válassz időszakot--' },
+                    { class: 'grow select mt-0' } %>
+    <%= form.submit "Keresés", class: 'btn' %>
+  <% end %>
+  <div class="rounded-md bg-secondary py-2 px-4 mb-4 flex justify-between">
+    <span class="text-2xl break-all">Felhasználói statisztikák:</span>
+  </div>
+  <% @users.each do |user, items| %>
+    <%= link_to statistics_for_user_path(user.id, @fiscal_period.id) do %>
+      <div class="rounded-md bg-secondary py-2 px-4 mb-4 flex justify-between btn btn-outline">
+        <span class="text-2xl break-all"><%= user.name %></span>
+      </div>
+    <% end %>
+  <% end %>
+</div>
