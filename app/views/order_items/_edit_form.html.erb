@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "order_item_frame_#{order_item.id}" do %>
-  <% form_with model: order_item, builder: CustomFormBuilder do |form| %>
+  <% form_with model: order_item, builder: CustomFormBuilder, multipart: true do |form| %>
     <div class="mt-6 bg-secondary p-4 rounded-md">
       <% if order_item.errors.any? %>
         <div id="error_explanation" class="error-explanation">
@@ -13,10 +13,15 @@
         </div>
       <% end %>
 
-      <div class="row">
-        <%= form.label :link %>
-        <%= form.text_field :link, class: "text-area" %>
-      </div>
+      <%= turbo_frame_tag "order_item_edit_form_order_image_input" do %>
+        <div class="flex flex-wrap gap-4 items-center">
+          <%= image_tag order_item.order_image.variant(:thumb) %>
+          <div class="flex gap-4">
+            <%= link_to "Másik kép", order_image_input_order_items_path, class: "btn" %>
+            <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'), class: "btn" %>
+          </div>
+        </div>
+      <% end %>
 
       <div class="row">
         <%= form.label :quantity %>
@@ -39,7 +44,7 @@
 
       <div class="row">
         <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
-        <%= form.switch_checkbox :laminated, dark: true%>
+        <%= form.switch_checkbox :laminated, dark: true %>
       </div>
 
       <div class="flex gap-4">
