@@ -30,6 +30,13 @@
                         class: "select" %>
       </div>
 
+      <% if current_user.admin? && @order_item.item_id==1 %>
+        <div class="row">
+          <%= form.label :price %>
+          <%= form.number_field :price, class: "number-field" %>
+        </div>
+      <% end %>
+
       <div class="row">
         <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
         <%= form.switch_checkbox :laminated, dark: true%>

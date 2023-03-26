@@ -19,6 +19,12 @@
       <%= label_tag 'Összesen' %>
       <%= order_item.price * order_item.quantity %> JMF
     </div>
+    <% if order_item.item_id==1 %>
+      <div class="order_item_row">
+        <%= label_tag 'Komment' %>
+        <%= order_item.comment %>
+      </div>
+    <% end %>
     <div class="order_item_row">
       <%= label_tag t('activerecord.attributes.order_item.laminated') %>
       <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox", disabled: true %>

@@ -61,6 +61,11 @@
          <%= order_item.quantity %> db
        </span>
       </div>
+      <% if order_item.item_id==1 %>
+        <div class="text-2xl mt-2">
+          <%= order_item.comment %>
+        </div>
+      <% end %>
       <div class="text-2xl mt-2">
         <%= link_to order_item.link, order_item.link, target: '_blank', class: 'link' %>
       </div>
