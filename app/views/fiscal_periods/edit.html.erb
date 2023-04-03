@@ -3,6 +3,6 @@
 
   <%= render "form", fiscal_period: @fiscal_period %>
 
-  <%= link_to "Megtekintés", @fiscal_period, class: "btn-outline" %>
-  <%= link_to "Vissza", fiscal_periods_path, class: "btn-outline" %>
+  <%= authorized_link_to "Megtekintés", fiscal_periods_path(@fiscal_period), class: "btn-outline" %>
+  <%= authorized_link_to "Vissza", fiscal_periods_path, class: "btn-outline" %>
 </div>

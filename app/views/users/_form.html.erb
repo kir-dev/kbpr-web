@@ -22,8 +22,8 @@
   </div>
 
   <div class="row flex flex-col ">
-    <%= form.label :admin, class: 'mb-2' %>
-    <%= form.switch_checkbox :admin %>
+    <%= form.label :role, class: 'mb-2' %>
+    <%= form.select :admin, User.roles.map{|k,v| [k,v]},{}, class: "select"%>
   </div>
 
   <div class="row flex flex-col ">

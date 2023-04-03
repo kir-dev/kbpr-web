@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :orders
   has_many :completed_orders, class_name: 'Order', foreign_key: 'completed_by_id'
   validates :room_number, presence: true, if: -> { kwc }
+
+  enum role: { basic: 'basic', member: 'member', admin: 'admin' }
+
   def self.from_omniauth(access_token)
     data = access_token.extra.raw_info
     user = User.find_by(authsch_id: data.internal_id,)

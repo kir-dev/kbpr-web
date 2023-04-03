@@ -16,17 +16,17 @@
   <div id="content-wrap" class="pb-48 pt-4">
     <div data-controller="navbar" class="max-w-7xl mx-auto">
       <nav class="flex justify-end gap-x-8 p-4 fixed top-0 w-full max-w-7xl bg-bg-dark z-10">
-        <%= link_to root_path, class: 'mr-auto' do %>
+        <%= authorized_link_to root_path, class: 'mr-auto' do %>
           <%= image_tag "kbpr-logo.svg" %>
         <% end %>
-        <%= link_to "Rendelés leadás", new_order_path, class: 'nav-item' %>
-        <%= link_to "KWC", current_kwc_index_path, class: 'nav-item' %>
-        <%= link_to "Rólunk", root_path, class: 'nav-item' %>
-        <%= link_to "Rendelések", orders_path, class: 'nav-item' if member? %>
-        <%= link_to "Admin panel", admin_pages_path, class: 'nav-item' if current_user&.admin? %>
+        <%= authorized_link_to "Rendelés leadás", new_order_path, class: 'nav-item' %>
+        <%= authorized_link_to "KWC", current_kwcs_path, class: 'nav-item' %>
+        <%= authorized_link_to "Rólunk", root_path, class: 'nav-item' %>
+        <%= authorized_link_to "Rendelések", orders_path, class: 'nav-item' %>
+        <%= authorized_link_to "Admin panel", admin_pages_path, class: 'nav-item' %>
         <% if current_user.present? %>
-          <%= link_to 'Rendeléseim', my_orders_path, class: 'nav-item' %>
-          <%= link_to current_user.name, profile_pages_path, class: 'nav-item' %>
+          <%= authorized_link_to 'Rendeléseim', my_orders_path, class: 'nav-item' %>
+          <%= authorized_link_to current_user.name, profile_pages_path, class: 'nav-item' %>
         <% else %>
           <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'nav-item' %>
         <% end %>
@@ -43,14 +43,14 @@
               <%= image_tag "nav-close-icon.svg", class: '' %>
             </div>
           </div>
-          <%= link_to "Rendelés leadás", new_order_path, class: 'mobile-nav-item' %>
-          <%= link_to "KWC", current_kwc_index_path, class: 'mobile-nav-item' %>
-          <%= link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
-          <%= link_to "Rendelések", orders_path, class: 'mobile-nav-item' if member? %>
-          <%= link_to "Admin panel", admin_pages_path, class: 'mobile-nav-item' if admin? %>
+          <%= authorized_link_to "Rendelés leadás", new_order_path, class: 'mobile-nav-item' %>
+          <%= authorized_link_to "KWC", current_kwcs_path, class: 'mobile-nav-item' %>
+          <%= authorized_link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
+          <%= authorized_link_to "Rendelések", orders_path, class: 'mobile-nav-item' if member? %>
+          <%= authorized_link_to "Admin panel", admin_pages_path, class: 'mobile-nav-item' %>
           <% if current_user.present? %>
-            <%= link_to 'Rendeléseim', my_orders_path, class: 'mobile-nav-item' %>
-            <%= link_to current_user.name, profile_pages_path, class: 'mobile-nav-item' %>
+            <%= authorized_link_to 'Rendeléseim', my_orders_path, class: 'mobile-nav-item' %>
+            <%= authorized_link_to current_user.name, profile_pages_path, class: 'mobile-nav-item' %>
           <% else %>
             <%= button_to "Belépés", user_authsch_omniauth_authorize_path, data: { turbo: false }, class: 'mobile-nav-item', form_class: 'w-full' %>
           <% end %>

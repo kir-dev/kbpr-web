@@ -34,7 +34,7 @@
     <span class="text-2xl break-all">Felhasználói statisztikák:</span>
   </div>
   <% @users.each do |user, items| %>
-    <%= link_to statistics_for_user_path(user.id, @fiscal_period.id) do %>
+    <%= authorized_link_to statistics_for_user_path(user.id, @fiscal_period.id) do %>
       <div class="rounded-md bg-secondary py-2 px-4 mb-4 btn btn-outline flex flex-col w-full items-start">
         <div class="text-2xl break-all"><%= user.name %></div>
         <% items.each do |item, quantity| %>

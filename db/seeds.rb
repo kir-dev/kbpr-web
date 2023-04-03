@@ -25,7 +25,7 @@ rich_text_content = ActionText::RichText.create!(name: 'content', record: articl
 group_names = ["Kör1", "Kör2", "Kör3"]
 group_names.each { |group_name| Group.create!(name: group_name) }
 
-user = User.create!(name: 'Admin', email: 'admin@admin.com', admin: true)
+user = User.create!(name: 'Admin', email: 'admin@admin.com', role: :admin)
 order = Order.create!(group: Group.first, user: user)
 
 item_params = [{ name: 'Egyéb', price: 0 },

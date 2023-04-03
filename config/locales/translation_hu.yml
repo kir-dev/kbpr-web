@@ -70,6 +70,8 @@ hu:
         remember_created_at: 'Emlékezz létrehozva:'  #g
         uid: Uid  #g
         room_number: Szobaszám
+        role: Szerepkör
+
 
       group:
         name: Név  #g

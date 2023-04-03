@@ -17,7 +17,7 @@
         <div class="flex flex-wrap gap-4 items-center">
           <%= image_tag order_item.order_image.variant(:thumb) %>
           <div class="flex gap-4">
-            <%= link_to "Másik kép", order_image_input_order_items_path, class: "btn" %>
+            <%= authorized_link_to "Másik kép", order_image_input_order_items_path, class: "btn" %>
             <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'), class: "btn" %>
           </div>
         </div>
@@ -48,7 +48,7 @@
       </div>
 
       <div class="flex gap-4">
-        <%= link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
+        <%= authorized_link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
         <%= form.submit 'Mentés', class: "btn grow" %>
       </div>
     </div>

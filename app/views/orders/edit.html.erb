@@ -3,5 +3,5 @@
 
   <%= render "form", order: @order %>
 
-  <%= link_to "Vissza a rendelésekhez", orders_path, class: "btn-outline mt-4 mb-8" %>
+  <%= authorized_link_to "Vissza a rendelésekhez", orders_path, class: "btn-outline mt-4 mb-8" %>
 </div>

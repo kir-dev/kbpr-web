@@ -11,13 +11,6 @@
         <%= @user.name %>
       </p>
 
-      <% if @user.admin? %>
-        <p class="row oneline">
-          <strong class="block font-medium mb-1">Admin:</strong>
-          Igen
-        </p>
-      <% end %>
-
       <% if @user.member? %>
         <p class="row oneline">
           <strong class="block font-medium mb-1">Tag:</strong>

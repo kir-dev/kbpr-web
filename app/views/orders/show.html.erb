@@ -4,8 +4,8 @@
     <%= render @order %>
 
     <div class="flex gap-4">
-      <%= link_to 'Szerkesztés', edit_order_path(@order), class: "btn" %>
-      <%= link_to 'Vissza a rendelésekhez', orders_path, class: "btn-outline" %>
+      <%= authorized_link_to 'Szerkesztés', edit_order_path(@order), class: "btn" %>
+      <%= authorized_link_to 'Vissza a rendelésekhez', orders_path, class: "btn-outline" %>
       <%= button_to 'Törlés', order_path(@order), method: :delete, class: "btn-red", form_class: 'inline ml-auto' %>
     </div>
   </div>

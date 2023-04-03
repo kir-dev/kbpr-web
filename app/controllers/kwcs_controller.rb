@@ -1,14 +1,12 @@
-class KwcController < ApplicationController
-  before_action :require_login, only: [:current, :update]
-  before_action :require_admin, only: [:index]
+class KwcsController < ApplicationController
   def current
     @user = current_user
   end
 
-  def update
+  def update_current
     @user = current_user
     if @user.update(kwc_params)
-      redirect_to current_kwc_index_path
+      redirect_to current_kwcs_path
     else
       render :show
     end

@@ -1,9 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize complete]
-  before_action :require_login
-  before_action :require_member, only: [:finalize, :index]
-  before_action :require_admin, except: [ :new, :create, :new_item, :create_item, :update_item, :all_item, :delete_item,
-                                          :finalize, :index]
+  # skip_before_action :basic_authorization, only: [:finalize, :update]
   # GET /orders or /orders.json
   def index
     search_attributes = {state: params.dig(:order, :state)|| :processing}
@@ -30,6 +27,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    authorize @order
   end
 
   # POST /orders or /orders.json
@@ -48,6 +46,7 @@ class OrdersController < ApplicationController
   end
 
   def finalize
+    authorize @order
     @order.update(order_params)
     if @order.update(state: :processing, finalized_at: Time.current)
 
@@ -59,6 +58,7 @@ class OrdersController < ApplicationController
 
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
+    authorize @order
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to orders_url, notice: "A rendelést sikeresen mentve!" }
@@ -70,6 +70,7 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
+    authorize @order
     @order.update!(deleted: true)
 
     respond_to do |format|
@@ -79,6 +80,7 @@ class OrdersController < ApplicationController
   end
 
   def complete
+    authorize @order
     @order.update!(state: :complete, completed_at: Time.current, completed_by: current_user)
     redirect_to orders_url, notice: "A rendelés elkészült!"
   end

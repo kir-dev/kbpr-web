@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
-  before_action :require_admin
   # GET /articles or /articles.json
   def index
     @articles = Article.order(created_at: :desc)
@@ -8,6 +7,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+
   end
 
   # GET /articles/new
@@ -61,6 +61,7 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+      authorize @article
     end
 
     # Only allow a list of trusted parameters through.

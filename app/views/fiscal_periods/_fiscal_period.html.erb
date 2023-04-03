@@ -16,8 +16,8 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Részletek", fiscal_period, class: "btn-outline" %>
-    <%= link_to 'Szerkesztés', edit_fiscal_period_path(fiscal_period), class: "btn-outline" %>
+    <%= authorized_link_to "Részletek", fiscal_period_path(fiscal_period), class: "btn-outline" %>
+    <%= authorized_link_to 'Szerkesztés', edit_fiscal_period_path(fiscal_period), class: "btn-outline" %>
     <hr class="mt-6">
   <% end %>
 </div>
