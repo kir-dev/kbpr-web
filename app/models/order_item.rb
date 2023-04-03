@@ -11,7 +11,7 @@ class OrderItem < ApplicationRecord
   validate :image_acceptable
 
   ACCEPTABLE_TYPES = ["image/jpeg", "image/png"]
-  validates :comment, presence: true, if: -> { item.id==1 }
+  validates :comment, presence: true, if: -> { item&.id==1 }
 
   def self.with_total_price
     select('sum(price*quantity) as total_price', '*').group(:id)

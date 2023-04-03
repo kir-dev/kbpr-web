@@ -72,7 +72,6 @@
        </span>
         <span class="text-2xl">
          <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'),class: "btn" %>
-
        </span>
       </div>
     </div>
@@ -81,7 +80,7 @@
     <% if action_name != "show" %>
       <%= button_to "Törlés", order_path(order), method: :delete, form: { data: { turbo_confirm: 'Biztosan törlöd a rendelést?' } }, class: "btn mr-4 btn btn-outline" %>
 
-      <%= link_to 'Szerkesztés', edit_order_path(order), class: "btn btn-outline" if current_user.admin? %>
+      <%= authorized_link_to 'Szerkesztés', edit_order_path(order), class: "btn btn-outline" if current_user.admin? %>
     <% end %>
   </div>
   <div class="flex justify-center mt-8">

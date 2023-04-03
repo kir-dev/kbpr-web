@@ -90,3 +90,5 @@ group :test do
 end
 
 gem "validate_url", "~> 1.0"
+
+gem "pundit", "~> 2.3"

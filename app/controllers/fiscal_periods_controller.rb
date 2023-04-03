@@ -61,6 +61,7 @@ class FiscalPeriodsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_fiscal_period
       @fiscal_period = FiscalPeriod.find(params[:id])
+      authorize @fiscal_period
     end
 
     # Only allow a list of trusted parameters through.

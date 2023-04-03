@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :set_order, only: [:index, :new, :create]
-  before_action :set_order_item, only: [:edit, :update]
+  before_action :set_order_item, only: [:edit, :update, :destroy]
 
   def index
     @orders = Order.all
@@ -27,10 +27,11 @@ class OrderItemsController < ApplicationController
   end
 
   def edit
-
+    authorize @order_item
   end
 
   def update
+    authorize @order_item
     if @order_item.update(order_item_params)
       broadcast_order_update
       return
@@ -40,7 +41,7 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item = OrderItem.find(params[:id])
+    authorize @order_item
     @order_item.destroy!
     broadcast_order_update
   end

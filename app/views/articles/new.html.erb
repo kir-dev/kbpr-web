@@ -3,5 +3,5 @@
 
   <%= render "form", article: @article %>
 
-  <%= link_to 'Vissza a hírekhez', articles_path, class: "btn-outline" %>
+  <%= authorized_link_to 'Vissza a hírekhez', articles_path, class: "btn-outline" %>
 </div>

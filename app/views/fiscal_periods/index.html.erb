@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Költési időszak</h1>
-    <%= link_to 'Költési időszak felvétele', new_fiscal_period_path, class: "btn" %>
+    <%= authorized_link_to 'Költési időszak felvétele', new_fiscal_period_path, class: "btn" %>
   </div>
 
   <div id="fiscal_periods" class="min-w-full">

@@ -24,7 +24,8 @@
     <% end %>
     <div class="order_item_row">
       <%= label_tag t('activerecord.attributes.order_item.laminated') %>
-      <%= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox", disabled: true %>
+      <%#= check_box_tag :laminated, 1, order_item.laminated, class: "checkbox", disabled: true %>
+      <span><%= order_item.laminated ? 'Igen': 'Nem' %></span>
     </div>
     <div class="order_item_row justify-end mt-4">
 

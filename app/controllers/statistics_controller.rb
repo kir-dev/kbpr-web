@@ -1,6 +1,5 @@
 class StatisticsController < ApplicationController
 
-  before_action :require_admin, only: [:index, :for_group, :for_group_member]
   before_action :set_fiscal_period, only: [:index, :for_user_index]
 
   def index

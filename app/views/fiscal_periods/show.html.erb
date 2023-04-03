@@ -2,10 +2,10 @@
   <div class="mx-auto">
     <%= render @fiscal_period %>
 
-    <%= link_to 'Szerkesztés', edit_fiscal_period_path(@fiscal_period), class: "btn-outline" %>
+    <%= authorized_link_to 'Szerkesztés', edit_fiscal_period_path(@fiscal_period), class: "btn-outline" %>
     <div class="inline-block ml-2">
       <%= button_to 'Törlés', fiscal_period_path(@fiscal_period), method: :delete, class: "btn-outline" %>
     </div>
-    <%= link_to 'Vissza', fiscal_periods_path, class: "btn-outline" %>
+    <%= authorized_link_to 'Vissza', fiscal_periods_path, class: "btn-outline" %>
   </div>
 </div>

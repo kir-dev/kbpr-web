@@ -1,9 +1,9 @@
 <div class="mb-8">
   <div class="flex justify-between">
     <h1 class="text-4xl font-bold"><%= @group.name %> rendelései</h1>
-    <%= link_to 'Vissza', statistics_path, class: 'btn-outline' %>
+    <%= authorized_link_to 'Vissza', statistics_path, class: 'btn-outline' %>
   </div>
-  <%= link_to 'Összes rendelés egyesével', for_group_statistics_path(params: { group_id: @group.id }), class: 'btn-outline' %>
+  <%= authorized_link_to 'Összes rendelés egyesével', for_group_statistics_path(params: { group_id: @group.id }), class: 'btn-outline' %>
 
     <% @members.each do |member, items| %>
         <div class="mt-6 bg-secondary rounded-md m-auto p-4">

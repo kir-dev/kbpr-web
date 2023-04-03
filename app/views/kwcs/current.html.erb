@@ -4,7 +4,7 @@
     Ha unod már a samponos flakon olvasgatását, és a telefonodon lévő összes játékot is kijátszottad, akkor a KultúrWC
     segít, hogy minőségi perceket tölts ott, ahová a király is gyalog jár.
   </p>
-  <%= form_with(model: @user, url: kwc_path(@user), class: "contents",
+  <%= form_with(model: @user, url: update_current_kwcs_path, class: "contents",
                 data: { turbo: false }, builder: CustomFormBuilder) do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation" class="error-explanation">

@@ -3,12 +3,12 @@
 <h2 class="font-bold text-3xl mb-8 mt-8">Admin lehetőségek</h2>
 
 <div class="grid md:grid-cols-4	gap-4 pb-8">
-  <%= link_to 'Hírek kezelése', articles_path, class: 'btn text-center' %>
-  <%= link_to 'Felhasználók kezelése', users_path, class: 'btn text-center' %>
-  <%= link_to 'Termékek kezelése', items_path, class: 'btn text-center' %>
-  <%= link_to 'KWC redelések', kwc_index_path, class: 'btn text-center' %>
-  <%= link_to 'Körös statisztikák', statistics_path, class: 'btn text-center' %>
-  <%= link_to 'Felhasználói stat.', statistics_users_path, class: 'btn text-center' %>
-  <%= link_to 'Költési időszakok', fiscal_periods_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Hírek kezelése', articles_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Felhasználók kezelése', users_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Termékek kezelése', items_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'KWC redelések', kwcs_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Körös statisztikák', statistics_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Felhasználói stat.', statistics_users_path, class: 'btn text-center' %>
+  <%= authorized_link_to 'Költési időszakok', fiscal_periods_path, class: 'btn text-center' %>
 </div>
 

@@ -6,14 +6,10 @@
     </p>
 
     <p class="my-5">
-      <strong class="block font-medium mb-1">Admin:</strong>
-      <%= user.admin ? 'Igen' : 'Nem' %>
+      <strong class="block font-medium mb-1">Szerepkör:</strong>
+      <%= user.role %>
     </p>
 
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Tag:</strong>
-      <%= user.member ? 'Igen' : 'Nem' %>
-    </p>
 
     <p class="my-5">
       <strong class="block font-medium mb-1"><%= t('activerecord.attributes.user.email') %>:</strong>
@@ -22,6 +18,6 @@
   </div>
 
   <% if action_name != "show" %>
-    <%= link_to "Részletek", user, class: "btn" %>
+    <%= authorized_link_to "Részletek", user_path(user), class: "btn" %>
   <% end %>
 </div>
