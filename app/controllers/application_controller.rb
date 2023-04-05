@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  UNAUTHORIZED_CONTROLLERS = ['omniauth_callbacks', 'sessions']
+  UNAUTHORIZED_CONTROLLERS = ['omniauth_callbacks', 'sessions','view_components']
   include Pundit::Authorization
   before_action :basic_authorization, if: -> { authorized_controller?  }
   after_action :verify_authorized, if: -> { authorized_controller? }

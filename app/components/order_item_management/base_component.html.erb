@@ -1,0 +1,64 @@
+<%= turbo_frame_tag 'order_items_frame' do %>
+  <div data-controller="<%= component_controller %>">
+    <div class="flex justify-between">
+      <h2 class="font-bold text-2xl">A rendelés termékei</h2>
+      <%= button_tag 'Termék hozzáadása', class: 'btn text-xl',
+                     'data-action': "click->#{component_controller}#openForm",
+                     "#{component_target}": 'addButton' %>
+    </div>
+    <div <%= "#{component_target}=form" %> class="border-8 p-4 mt-6 pad border-primary rounded-md hidden">
+      <h2 class="text-2xl">Termék hozzáadás</h2>
+      <%= form_with(model: new_order_item, url: url, class: "contents", builder: CustomFormBuilder) do |form| %>
+        <% if new_order_item.errors.any? %>
+          <div id="error_explanation" class="error-explanation">
+            <h2>A rendelés hibás</h2>
+
+            <ul class="list-disc ml-5">
+              <% new_order_item.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
+        <div class="row">
+          <%= form.label :order_image %>
+          <%= form.file_field :order_image, accept: "image/jpeg, image/png", class: "file-form-field" %>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG (MAX. 10MB).</p>
+        </div>
+
+        <div class="row">
+          <%= form.label :quantity %>
+          <%= form.number_field :quantity, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="row">
+          <%= form.label :item_id, 'Termék' %>
+          <%= form.select :item_id, Item.all.map { |item| [item.name_with_price, item.id] },
+                          { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
+                          class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full",
+                          id: "selector", :onChange => "javascript: commentVisibility();" %>
+        </div>
+
+        <div class="row" id="commentfield">
+          <%= form.label :comment, "Megjegyzés (Kérjük írd le pontosan, hogy mi legyen a nyomtatott termék! Az árát ez alapján fogjuk kiszámolni.)" %>
+          <%= form.text_field :comment, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="row">
+          <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
+          <%= form.switch_checkbox :laminated %>
+        </div>
+
+        <div class="flex gap-4">
+          <%= button_tag 'Mégsem', type: :button, class: 'btn btn-outline grow',
+                         'data-action': "click->#{component_controller}#closeForm" %>
+          <%= form.submit 'Hozzáad', class: "btn grow" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
