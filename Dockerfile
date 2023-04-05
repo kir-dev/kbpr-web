@@ -1,4 +1,6 @@
 FROM ruby:3.0.3
+RUN apt update
+RUN apt install -yq libvips-tools
 WORKDIR /kbpr-web
 COPY Gemfile .
 COPY Gemfile.lock .
