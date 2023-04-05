@@ -13,22 +13,17 @@
 
   <div class="row">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "text-area" %>
+    <%= form.text_field :name, class: "text-area", disabled: true %>
   </div>
 
   <div class="row">
     <%= form.label :email %>
-    <%= form.text_field :email, class: "text-area" %>
+    <%= form.text_field :email, class: "text-area disabled", disabled: true %>
   </div>
 
   <div class="row flex flex-col ">
     <%= form.label :role, class: 'mb-2' %>
-    <%= form.select :admin, User.roles.map{|k,v| [k,v]},{}, class: "select"%>
-  </div>
-
-  <div class="row flex flex-col ">
-    <%= form.label :member, class: 'mb-2' %>
-    <%= form.switch_checkbox :member %>
+    <%= form.select :role, User.roles.map{|k,v| [k,v]},{}, class: "select"%>
   </div>
 
   <div class="inline">
