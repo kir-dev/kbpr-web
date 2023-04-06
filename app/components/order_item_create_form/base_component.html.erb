@@ -1,4 +1,4 @@
-<%= turbo_frame_tag 'order_items_frame' do %>
+<%= turbo_frame_tag 'order_item_create_form_frame' do %>
   <div data-controller="<%= component_controller %>">
     <div class="flex justify-between">
       <h2 class="font-bold text-2xl">A rendelés termékei</h2>
@@ -6,7 +6,7 @@
                      'data-action': "click->#{component_controller}#openForm",
                      "#{component_target}": 'addButton' %>
     </div>
-    <div <%= "#{component_target}=form" %> class="border-8 p-4 mt-6 pad border-primary rounded-md hidden">
+    <div <%= "#{component_target}=form" %> class="border-8 p-4 mt-6 pad border-primary rounded-md <%= 'hidden' if hidden %>">
       <h2 class="text-2xl">Termék hozzáadás</h2>
       <%= form_with(model: new_order_item, url: url, class: "contents", builder: CustomFormBuilder) do |form| %>
         <% if new_order_item.errors.any? %>
@@ -21,6 +21,7 @@
           </div>
         <% end %>
 
+        <%= form.hidden_field :order_id %>
 
         <div class="row">
           <%= form.label :order_image %>

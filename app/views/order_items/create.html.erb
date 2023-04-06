@@ -1,3 +1,75 @@
-<%= turbo_frame_tag 'order_items_frame' do %>
-  <%= render 'order_items_with_form', order: @order, order_item: @order_item %>
-<% end %>
+<turbo-frame id="order_item_create_form_frame">
+  <div data-controller="order-item-create-form--base-component">
+    <div class="flex justify-between">
+      <h2 class="font-bold text-2xl">A rendelés termékei</h2>
+      <button name="button" type="submit" class="btn text-xl" data-action="click-&gt;order-item-create-form--base-component#openForm" data-order-item-create-form--base-component-target="addButton">Termék
+        hozzáadása
+      </button>
+    </div>
+    <div data-order-item-create-form--base-component-target=form class="border-8 p-4 mt-6 pad border-primary rounded-md hidden">
+      <h2 class="text-2xl">Termék hozzáadás</h2>
+      <form class="contents" enctype="multipart/form-data" action="/order_items" accept-charset="UTF-8" method="post">
+        <input type="hidden" name="authenticity_token" value="s-qGCcJPglmVCEp4R_vHU4u0l4rN1BQypYNW__CVs07wJwWCtyVlXAl09tuKg7kmqKCHlUFGzO9FBNbVx7AD-A" autocomplete="off"/>
+        <div id="error_explanation" class="error-explanation">
+          <h2>A rendelés hibás</h2>
+
+          <ul class="list-disc ml-5">
+            <li>Order must exist</li>
+            <li>Termék megadása kötelező</li>
+            <li>Ár nincs megadva</li>
+            <li>Mennyiség nincs megadva</li>
+            <li>Mennyiség nem szám</li>
+            <li>Képfájl feltöltése kötelező</li>
+          </ul>
+        </div>
+
+        <input autocomplete="off" type="hidden" name="order_item[order_id]" id="order_item_order_id"/>
+
+        <div class="row">
+          <div class="field_with_errors"><label for="order_item_order_image">Képfájl</label></div>
+          <div class="field_with_errors">
+            <input accept="image/jpeg, image/png" class="file-form-field" type="file" name="order_item[order_image]" id="order_item_order_image"/>
+          </div>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG (MAX. 10MB).</p>
+        </div>
+
+        <div class="row">
+          <div class="field_with_errors"><label for="order_item_quantity">Mennyiség</label></div>
+          <div class="field_with_errors">
+            <input class="text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" type="number" value="" name="order_item[quantity]" id="order_item_quantity"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="order_item_item_id">Termék</label>
+          <select class="text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" id="selector" onChange="javascript: commentVisibility();" name="order_item[item_id]">
+            <option value="">-- Válasszd ki, hogy mitnyomtatnál! --</option>
+            <option value="1">Egyéb (0.0 JMF)</option>
+            <option value="2">A4-es plakát (100.0 JMF)</option>
+            <option value="3">A3-es plakát (200.0 JMF)</option>
+            <option value="4">A2-es plakát (400.0 JMF)</option>
+            <option value="5">matrica (7.0 JMF)</option>
+            <option value="6">x (33.0 JMF)</option>
+          </select>
+        </div>
+
+        <div class="row" id="commentfield">
+          <label for="order_item_comment">Megjegyzés (Kérjük írd le pontosan, hogy mi legyen a nyomtatott termék! Az
+            árát ez alapján fogjuk kiszámolni.)</label>
+          <input class="text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" type="text" value="" name="order_item[comment]" id="order_item_comment"/>
+        </div>
+
+        <div class="row">
+          <label class="block mb-2" for="order_item_Lelamináljuk a rendelésed">Lelamináljuk a rendelésed?</label>
+          <label class="switch"><input name="order_item[laminated]" type="hidden" value="0" autocomplete="off"/><input type="checkbox" value="1" name="order_item[laminated]" id="order_item_laminated"/><span class="slider round"></span></label>
+        </div>
+
+        <div class="flex gap-4">
+          <button name="button" type="button" class="btn btn-outline grow" data-action="click-&gt;order-item-create-form--base-component#closeForm">Mégsem</button>
+          <input type="submit" name="commit" value="Hozzáad" class="btn grow" data-disable-with="Hozzáad"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</turbo-frame>
+

@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order, only: [:index, :new, :create]
+  before_action :set_order, only: [:index, :new]
   before_action :set_order_item, only: [:edit, :update, :destroy]
 
   def index
@@ -19,11 +19,11 @@ class OrderItemsController < ApplicationController
 
   def create
     @order_item = OrderItem.new(order_item_params)
-    @order_item.order = @order
     @order_item.price = @order_item.item&.price
     if @order_item.save
       @order_item = nil # close editform
     end
+    render(OrderItemCreateForm::BaseComponent.new(order_item: @order_item ), content_type: "text/html")
   end
 
   def edit
