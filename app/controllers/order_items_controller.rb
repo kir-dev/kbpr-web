@@ -21,9 +21,15 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.new(order_item_params)
     @order_item.price = @order_item.item&.price
     if @order_item.save
-      @order_item = nil # close editform
+      @order_item = OrderItem.new(order: @order_item.order)
+      render(OrderItemCreateForm::BaseComponent.new(order_item: @order_item,
+                                                    success: true),
+             content_type: "text/html")
+
+    else
+      render(OrderItemCreateForm::BaseComponent.new(order_item: @order_item),
+             content_type: "text/html")
     end
-    render(OrderItemCreateForm::BaseComponent.new(order_item: @order_item ), content_type: "text/html")
   end
 
   def edit
@@ -59,7 +65,7 @@ class OrderItemsController < ApplicationController
   end
 
   def order_item_params
-    params.require(:order_item).permit(:link, :quantity, :item_id, :laminated, :comment, :price, :order_image)
+    params.require(:order_item).permit(:order_id, :quantity, :item_id, :laminated, :comment, :price, :order_image)
   end
 
   def broadcast_order_update

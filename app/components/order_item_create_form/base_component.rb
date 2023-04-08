@@ -3,14 +3,17 @@
 class OrderItemCreateForm::BaseComponent < ViewComponent::Base
   include Turbo::FramesHelper
 
-  attr_reader :order, :new_order_item
+  attr_reader :order, :new_order_item, :success
 
-  def initialize(order_item:)
+  def initialize(order_item:, form_hidden: nil, success: false )
     @order = order_item.order
     @new_order_item = order_item
+    @form_hidden = form_hidden
+    @success = success
   end
 
   private
+
   def component_controller
     "order-item-create-form--base-component"
   end
@@ -23,7 +26,8 @@ class OrderItemCreateForm::BaseComponent < ViewComponent::Base
     order_items_path
   end
 
-  def hidden
+  def form_hidden
+    return @form_hidden unless @form_hidden.nil?
     return false if new_order_item.errors.present?
 
     true
