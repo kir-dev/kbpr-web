@@ -2,6 +2,10 @@ hu:
   devise:
     omniauth_callbacks:
       success: Sikeres bejelentkezés!
+    sessions:
+      signed_in: Sikeres bejelentkezés!
+      signed_out: Sikeres kijelentkezés!
+      already_signed_out: Már be vagy jelentkezve!
   activerecord:
     models:
       action_text/encrypted_rich_text: Műveleti szöveg/titkosított formázott szöveg  #g
