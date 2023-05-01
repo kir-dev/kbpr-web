@@ -4,7 +4,7 @@ class OrderForm::BaseComponentPreview < ViewComponent::Preview
   include Turbo::FramesHelper
 
   def default
-    order = Order.new
+    order = Order.last
     render(OrderForm::BaseComponent.new(order: order))
   end
 end

@@ -22,6 +22,7 @@ class OrderItemsController < ApplicationController
     @order_item.price = @order_item.item&.price
     if @order_item.save
       @order_item = OrderItem.new(order: @order_item.order)
+      broadcast_order_update
       render(OrderItemCreateForm::BaseComponent.new(order_item: @order_item,
                                                     success: true),
              content_type: "text/html")

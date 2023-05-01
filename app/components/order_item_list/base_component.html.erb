@@ -1,12 +1,11 @@
 <div data-controller="order-item-list--base-component">
   <div class="border-l-8 pl-4 border-primary">
-    <%= render order.order_items %>
+    <%= render order_items %>
   </div>
   <div class="flex justify-between mt-8 bg-secondary rounded-md p-4">
     <h2 class="text-2xl">Végösszeg</h2>
     <span id='order_total_price' class="font-bold text-2xl border-b-4 border-primary">
-         <%= order.order_items.sum { |order_item| order_item.price * order_item.quantity } %> JMF
+         <%= order_items.sum { |order_item| order_item.price * order_item.quantity } %> JMF
       </span>
   </div>
-
 </div>

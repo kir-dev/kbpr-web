@@ -9,6 +9,6 @@ class OrderForm::BaseComponent < ViewComponent::Base
   end
 
   def url
-    root_path
+    order_form_component_submit_path
   end
 end

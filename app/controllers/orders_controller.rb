@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   # skip_before_action :basic_authorization, only: [:finalize, :update]
   # GET /orders or /orders.json
   def index
-    search_attributes = {state: params.dig(:order, :state)|| :processing}
+    search_attributes = { state: params.dig(:order, :state) || :processing }
     @search_order = Order.new(search_attributes)
     @orders = Order.where(search_attributes).order(finalized_at: :asc)
   end
@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
       @order.state = :processing
       @order.validate
     end
+    render OrderForm::BaseComponent.new(order: @order), content_type: "text/html"
   end
 
   # GET /orders/1/edit

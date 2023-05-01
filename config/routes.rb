@@ -31,5 +31,10 @@ Rails.application.routes.draw do
   end
   get '/statistics_users', to: 'statistics#for_user_index', as: :statistics_users
   get '/statistics_users/:user_id/:fiscal_period_id', to: 'statistics#for_user', as: :statistics_for_user
+
+  namespace :order_form_component do
+    post :submit
+  end
+
   root "pages#home"
 end
