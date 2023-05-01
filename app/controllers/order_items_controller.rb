@@ -2,6 +2,7 @@ class OrderItemsController < ApplicationController
   before_action :set_order, only: [:index, :new, :create]
   before_action :set_order_item, only: [:edit, :update, :destroy]
 
+
   def index
     @orders = Order.all
     # @order.state = :processing

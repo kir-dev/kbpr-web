@@ -30,7 +30,7 @@
 
       <div class="row">
         <%= form.label :item %>
-        <%= form.select :item_id, Item.all.map { |item| [item.name, item.id] },
+        <%= form.select :item_id, Item.available.map { |item| [item.name, item.id] },
                         { prompt: "-- Válasszd ki, hogy mitnyomtatnál! --" },
                         class: "select" %>
       </div>
