@@ -1,5 +1,9 @@
 <div class="max-w-xl m-auto">
-  <%= form_with url: statistics_path, method: :get,
+  <div class="mb-4 flex justify-end">
+    <% export_params = params.permit(:fiscal_period_id, :start_at, :end_at).merge({format: :csv})%>
+    <%= authorized_link_to 'Export', for_groups_statistics_path(export_params), class: 'btn' %>
+  </div>
+  <%= form_with url: for_groups_statistics_path, method: :get,
                 class: 'rounded-md bg-secondary py-4 px-4 mb-4 flex flex-col justify-between text-black gap-4 flex-wrap',
                 html: { 'data-controller': 'stat' },
                 data: { turbo: false } do |form| %>
@@ -14,15 +18,15 @@
     <div class="flex flex-col text-white hidden" data-stat-target="dateForm">
       <div class="row">
         <%= form.label 'Kezdési idő' %>
-        <%= form.date_field :start_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
-            class: "datetime-field",
-            'data-stat-target': 'startDate' %>
+        <%= form.date_field :start_at, value: @fiscal_period.start_at.try(:strftime, '%Y-%m-%d'),
+                            class: "datetime-field",
+                            'data-stat-target': 'startDate' %>
       </div>
       <div class="row">
         <%= form.label 'Befejezési idő' %>
         <%= form.date_field :end_at, value: @fiscal_period.end_at.try(:strftime, '%Y-%m-%d'),
-                                      class: "datetime-field ",
-                                      'data-stat-target': 'endDate' %>
+                            class: "datetime-field ",
+                            'data-stat-target': 'endDate' %>
       </div>
     </div>
 
@@ -32,11 +36,11 @@
     <span class="text-2xl break-all">Kör</span>
     <span class="text-2xl no-wrap">Költés</span>
   </div>
-  <% @group_total_prices.each do |group_price| %>
-    <%= authorized_link_to for_group_member_statistics_path(params: { group_id: group_price }) do %>
+  <% @groups_with_items.each do |group, items| %>
+    <%= authorized_link_to for_group_member_statistics_path(params: { group_id: group.id }) do %>
       <div class="rounded-md bg-secondary py-2 px-4 mb-4 flex justify-between btn btn-outline">
-        <span class="text-2xl break-all"><%= group_price.name %></span>
-        <span class="text-2xl no-wrap"><%= group_price.price %> JMF</span>
+        <span class="text-2xl break-all"><%= group.name %></span>
+        <span class="text-2xl no-wrap"><%= items.sum { |item, quantity| item.price * quantity } %> JMF</span>
       </div>
     <% end %>
   <% end %>

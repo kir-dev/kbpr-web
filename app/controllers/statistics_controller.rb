@@ -1,13 +1,29 @@
 class StatisticsController < ApplicationController
 
-  before_action :set_fiscal_period, only: [:index, :for_user_index]
+  before_action :set_fiscal_period, only: [:for_groups, :for_user_index, :for_user]
 
-  def index
-    @group_total_prices = Group.price_for(
-      OrderItem.all.joins(:order)
-               .where(order: { state: :complete })).
-      where('orders.finalized_at BETWEEN :start and :end',
-            start: @fiscal_period.start_at.beginning_of_day, end: @fiscal_period.end_at.end_of_day)
+  def for_groups
+    @order_items = OrderItem.joins(:order).includes(order: :group)
+                            .where(orders: { state: :complete })
+                            .where('orders.finalized_at BETWEEN :start and :end',
+                                   start: @fiscal_period.start_at.beginning_of_day,
+                                   end: @fiscal_period.end_at.end_of_day)
+    @groups_with_items = {}
+    @order_items.each do |order_item|
+      group = order_item.order.group
+      item = order_item.item
+      @groups_with_items[group] ||= {}
+      @groups_with_items[group][item] ||= 0
+      @groups_with_items[group][item] = @groups_with_items[group][item] + order_item.quantity
+    end
+    file_name = "kbpr_körös_nyomtatások_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv"
+    respond_to do |format|
+      format.html
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=#{file_name}"
+      end
+    end
   end
 
   def for_group
