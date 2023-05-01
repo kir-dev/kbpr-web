@@ -25,10 +25,12 @@ Rails.application.routes.draw do
     get :current, on: :collection
     patch :current, on: :collection, as: :update_current, to: 'kwcs#update_current'
   end
-  resources :statistics, only: [:index] do
+  resources :statistics do
+    get :for_groups, on: :collection
     get :for_group, on: :collection
     get :for_group_member, on: :collection
   end
+
   get '/statistics_users', to: 'statistics#for_user_index', as: :statistics_users
   get '/statistics_users/:user_id/:fiscal_period_id', to: 'statistics#for_user', as: :statistics_for_user
   root "pages#home"

@@ -1,5 +1,5 @@
 class StatisticPolicy < ApplicationPolicy
-  def index?
+  def for_groups?
     member?
   end
 
