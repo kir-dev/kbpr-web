@@ -59,7 +59,7 @@ class StatisticsController < ApplicationController
 
   def user_stat
     @order_items = OrderItem.joins(:order).includes(:item, order: :completed_by)
-                            .where('orders.finalized_at BETWEEN :start and :end',
+                            .where('orders.completed_at BETWEEN :start and :end',
                                    start: @fiscal_period.start_at, end: @fiscal_period.end_at)
     @users = {}
     @order_items.each do |order_item|
