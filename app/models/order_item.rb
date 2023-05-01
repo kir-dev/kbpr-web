@@ -9,6 +9,7 @@ class OrderItem < ApplicationRecord
   validates :laminated, inclusion: [true, false]
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :image_acceptable
+  validate :item_is_available, on: :create
 
   ACCEPTABLE_TYPES = ["image/jpeg", "image/png"]
   validates :comment, presence: true, if: -> { item&.id==1 }
@@ -43,5 +44,8 @@ class OrderItem < ApplicationRecord
       errors.add(:order_image, "formátuma nem megfelelő")
     end
 
+  end
+  def item_is_available
+    errors.add('a termék nem rendelhető') unless item.available
   end
 end

@@ -9,6 +9,10 @@
     <%= item.price %> JMF
   </p>
 
+  <p class="my-5">
+    <%= item.available ? "Rendelhető" : "Nem rendelhető" %>
+  </p>
+
   <% if action_name != "show" %>
     <%= authorized_link_to 'Szerkesztés', edit_item_path(item), class: "btn" %>
     <hr class="mt-6">

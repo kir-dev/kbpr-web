@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
 
+  scope :available, ->{ where(available: true )}
   def name_with_price
     "#{name} (#{price} JMF)"
   end
