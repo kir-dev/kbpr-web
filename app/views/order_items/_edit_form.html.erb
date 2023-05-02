@@ -42,11 +42,6 @@
         </div>
       <% end %>
 
-      <div class="row">
-        <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
-        <%= form.switch_checkbox :laminated, dark: true %>
-      </div>
-
       <div class="flex gap-4">
         <%= authorized_link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
         <%= form.submit 'Mentés', class: "btn grow" %>

@@ -6,7 +6,6 @@ class OrderItem < ApplicationRecord
   end
 
   validates :price, presence: true
-  validates :laminated, inclusion: [true, false]
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :image_acceptable
   validate :item_is_available, on: :create
