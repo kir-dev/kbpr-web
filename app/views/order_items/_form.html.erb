@@ -43,11 +43,6 @@
       <%= form.text_field :comment, class: "text-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
 
-    <div class="row">
-      <%= form.label 'Lelamináljuk a rendelésed?', class: 'block mb-2' %>
-      <%= form.switch_checkbox :laminated %>
-    </div>
-
     <div class="flex gap-4">
       <%= link_to 'Mégsem', order_items_path(order_id: order_item.order.id), class: 'btn btn-outline grow' %>
       <%= form.submit 'Hozzáad', class: "btn grow" %>
