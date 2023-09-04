@@ -15,7 +15,7 @@
 
       <%= turbo_frame_tag "order_item_edit_form_order_image_input" do %>
         <div class="flex flex-wrap gap-4 items-center">
-          <%= image_tag order_item.order_image.variant(:thumb) %>
+          <%= image_tag order_item.thumb_nail %>
           <div class="flex gap-4">
             <%= authorized_link_to "Másik kép", order_image_input_order_items_path, class: "btn" %>
             <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'), class: "btn" %>

@@ -63,7 +63,7 @@
       <% end %>
       <div class="flex justify-between items-end">
        <span class="text-2xl border-2 border-primary">
-        <%= image_tag order_item.order_image.variant(:thumb) %>
+        <%= image_tag order_item.thumb_nail %>
        </span>
         <span class="text-2xl">
          <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'),class: "btn" %>

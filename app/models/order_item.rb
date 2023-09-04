@@ -10,7 +10,7 @@ class OrderItem < ApplicationRecord
   validate :image_acceptable
   validate :item_is_available, on: :create
 
-  ACCEPTABLE_TYPES = ["image/jpeg", "image/png"]
+  ACCEPTABLE_TYPES = ["image/jpeg", "image/png", "application/pdf"]
   validates :comment, presence: true, if: -> { item&.id==1 }
 
   def self.with_total_price
@@ -24,6 +24,10 @@ class OrderItem < ApplicationRecord
       .to_a.map do |row|
       OpenStruct.new(group: row.order.group, price: row.group_total_price)
     end
+  end
+
+  def thumb_nail
+    order_image.representation(resize_to_limit: [256, 256])
   end
 
   private
