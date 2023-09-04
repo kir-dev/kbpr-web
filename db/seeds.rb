@@ -37,7 +37,7 @@ item_params = [{ name: 'Egyéb', price: 0 },
 item_params.each do |item_param|
   item = Item.create!(item_param)
   comment = "saját termék valami konkrétabb leírással" if item.id==1
-  order_item = OrderItem.new(item: item, quantity: 1, price: item.price, laminated: false,
+  order_item = OrderItem.new(item: item, quantity: 1, price: item.price,
                              comment: comment, order: order)
   order_item.order_image.attach(io: File.open('./app/assets/images/cat.png'), filename: 'cat.png')
   order_item.save!
