@@ -27,10 +27,19 @@ services:
       - .postgres_password
     networks:
       - kbpr-net
+  redis:
+    image: redis:7.0-alpine
+    restart: always
+    volumes:
+      - kbpr_redis:/data
+    networks:
+      - kbpr-net
 networks:
   kbpr-net:
 volumes:
   kbpr_db:
     external: true
   kbpr_image_folder:
+    external: true
+  kbpr_redis:
     external: true
