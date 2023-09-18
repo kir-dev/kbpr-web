@@ -11,7 +11,7 @@ class OrderItem < ApplicationRecord
   validate :item_is_available, on: :create
 
   ACCEPTABLE_TYPES = ["image/jpeg", "image/png", "application/pdf"]
-  validates :comment, presence: true, if: -> { item&.id==1 }
+  validates :comment, presence: true, if: -> { item&.id == 1 }
 
   def self.with_total_price
     select('sum(price*quantity) as total_price', '*').group(:id)
@@ -48,7 +48,10 @@ class OrderItem < ApplicationRecord
     end
 
   end
+
   def item_is_available
-    errors.add('a termék nem rendelhető') unless item.available
+    return unless item.present?
+
+    errors.add(:item, 'a termék nem rendelhető') unless item.available
   end
 end
