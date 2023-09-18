@@ -38,9 +38,9 @@
   <div>
     <div class="row-with-checkbox">
       <div>
-        <p>Elolvastam a
-          <a class="link" href="https://kbpr.sch.bme.hu/documents/plakatolasi_szabalyzat_2022.pdf">plakátolási
-            szabályzatot</a></p>
+        <p>Elolvastam a <%= link_to 'plakátolási szabályzatot', '/plakatolasi_szabalyzat_2022.pdf', class: 'link',
+                                    target: :_blank,  referrer_policy: 'no-referrer'%>
+        </p>
         <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
       </div>
       <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
