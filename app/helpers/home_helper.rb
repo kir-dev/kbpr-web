@@ -1,5 +1,5 @@
 module HomeHelper
-    def randomText
+    def random_text
      # pick one of them randomly
      ["Ahol a körvez csinál mindent🧢", 
         "A dizájnt kérd az Schdesign-tól", 
@@ -12,5 +12,4 @@ module HomeHelper
         "Új logó mikor???"
     ].sample
     end
-  end
-  
+end

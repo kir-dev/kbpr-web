@@ -27,7 +27,11 @@ class OrderItem < ApplicationRecord
   end
 
   def thumb_nail
-    order_image.representation(resize_to_limit: [256, 256])
+    if order_image.representable?
+      order_image.representation(resize_to_limit: [256, 256])
+    else
+      'no_preview.png'
+    end
   end
 
   private
