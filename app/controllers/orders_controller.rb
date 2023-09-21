@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
     if @order.update(state: :processing, finalized_at: Time.current)
 
       redirect_to root_path, notice: "Rendelés sikeresen leadva!"
-      send_notification (order = order_params)
+      send_notification (order_params)
     else
       redirect_to new_order_path(process: true)
     end
