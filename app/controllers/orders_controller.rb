@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
   before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize complete]
   # skip_before_action :basic_authorization, only: [:finalize, :update]
   # GET /orders or /orders.json
@@ -51,6 +52,7 @@ class OrdersController < ApplicationController
     if @order.update(state: :processing, finalized_at: Time.current)
 
       redirect_to root_path, notice: "Rendelés sikeresen leadva!"
+      send_notification (order = order_params)
     else
       redirect_to new_order_path(process: true)
     end
