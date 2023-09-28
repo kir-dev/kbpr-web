@@ -1,0 +1,7 @@
+<div class="mx-auto w-full">
+  <h1 class="font-bold text-4xl">Új hír</h1>
+
+  <%= render "form", article: @article %>
+
+  <%= authorized_link_to 'Vissza a hírekhez', articles_path, class: "btn-outline" %>
+</div>

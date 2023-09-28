@@ -1,0 +1,10 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl mb-12">Funky Szövegek</h1>
+    <%= authorized_link_to 'Új szöveg', new_article_path, class: "btn" %>
+  </div>
+
+  <div id="articles" class="min-w-full">
+    <%= render @articles %>
+  </div>
+</div>
