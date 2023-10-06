@@ -1,5 +1,5 @@
 class StatisticsController < ApplicationController
-
+  require 'csv'
   before_action :set_fiscal_period, only: [:for_groups, :for_user_index, :for_user]
 
   def for_groups
@@ -20,8 +20,19 @@ class StatisticsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=#{file_name}"
+        csv = CSV.generate do |csv|
+          @items = Item.all
+          csv << ['Kör neve','Összeg'] + @items.pluck(:name)
+          @groups_with_items.each do |group, items|
+            line = [group.name]
+            line << items.sum { |item, quantity| item.price * quantity }.to_i
+            @items.each do |item|
+              line << items[item]
+            end
+            csv << line
+          end
+        end
+        send_data csv, disposition: "attachment; filename=#{file_name}"
       end
     end
   end
