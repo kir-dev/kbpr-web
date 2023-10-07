@@ -4,8 +4,8 @@
 
     <div class="flex items-center gap-4 mb-8" style="flex-wrap: wrap">
       <%= authorized_link_to 'Vissza a szövegekhez', funky_texts_path, class: "btn-outline" %>
-      <%= authorized_link_to 'Szerkesztés', edit_funky_texts_path(@funky_text), class: 'btn' %>
-      <%= button_to 'Törlés', funky_texts_path(@funky_text), method: :delete, class: "btn-red",
+      <%= authorized_link_to 'Szerkesztés', edit_funky_text_path(@funky_text), class: 'btn' %>
+      <%= button_to 'Törlés', funky_text_path(@funky_text), method: :delete, class: "btn-red",
                     form_class: 'inline ml-auto' %>
     </div>
   </div>

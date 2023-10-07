@@ -3,7 +3,7 @@ module OrdersHelper
         if Rails.env.production?
             uri = URI('https://ntfy.noeyouth.eu/kbpr')
             body = "#{Group.find_by(id: order["group_id"]).name} rendelt plakátot. #{if order["printed_by_me"] == "1" then "Ők nyomtatják" else "Kbpr nyomtatja" end}"
-            headers = { 'Authorization' => 'Bearer tk_ilj3n4fu3zfdp86rl2w1e35o03oby',
+            headers = { 'Authorization' => 'Bearer ' + Rails.application.credentials.notification_api_key,
                     'Title' => "Új rendelés",
                     'Tags' => 'inbox_tray, uj-rendeles',
                     'Priority' =>  'default',

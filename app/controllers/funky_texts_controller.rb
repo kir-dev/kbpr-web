@@ -60,12 +60,12 @@ class FunkyTextsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_funky_text
-      @funky_text = FunkyText.all.order(id: :desc)
+      @funky_text = FunkyText.find(params[:id])
       authorize @funky_text
     end
 
     # Only allow a list of trusted parameters through.
     def funky_text_params
-      params.require(:funky_text).permit(:title)
+      params.require(:funky_text).permit(:title, :content)
     end
 end
