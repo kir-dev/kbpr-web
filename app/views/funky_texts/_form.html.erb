@@ -1,0 +1,27 @@
+<%= form_with(model: funky_text, class: "contents bg-primary") do |form| %>
+  <% if funky_text.errors.any? %>
+    <div id="error_explanation" class="error-explanation">
+      <h2><%= pluralize(funky_text.errors.count, "error") %> prohibited this text from being saved: </h2>
+
+      <ul>
+        <% funky_text.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <%= form.label :title, class: 'label' %>
+    <%= form.text_field :title, class: "text-area" %>
+  </div>
+
+  <div class="row">
+    <%= form.label :content, class: 'label leading-10' %>
+    <%= form.rich_text_area :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn" %>
+  </div>
+<% end %>

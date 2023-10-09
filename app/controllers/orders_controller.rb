@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
   before_action :set_order, only: %i[ show edit update destroy new_item create_item update_item all_item finalize complete]
   # skip_before_action :basic_authorization, only: [:finalize, :update]
   # GET /orders or /orders.json
   def index
     search_attributes = {state: params.dig(:order, :state)|| :processing}
     @search_order = Order.new(search_attributes)
-    @orders = Order.where(search_attributes).order(finalized_at: :asc)
+    @orders = Order.where(search_attributes).order(finalized_at: :desc)
   end
 
   def my_orders
@@ -51,6 +52,7 @@ class OrdersController < ApplicationController
     if @order.update(state: :processing, finalized_at: Time.current)
 
       redirect_to root_path, notice: "Rendelés sikeresen leadva!"
+      send_notification (order_params)
     else
       redirect_to new_order_path(process: true)
     end

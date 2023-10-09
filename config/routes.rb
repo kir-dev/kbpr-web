@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :articles
+  resources :funky_texts
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :users, except: :destroy
