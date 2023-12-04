@@ -93,7 +93,7 @@ hu:
         group: Kör
         group_id: Kör
         has_sch_logo: Igénylésen van Schönherz logó
-        has_right_format: Igénylés png/jpg formátumú
+        has_right_format: Igénylés png/jpg/pdf formátumú
         has_date: Az igénylésemen szerepel lejárati időpont, vagy a rendezvény dátuma
         accepted_terms_of_service: Elolvastam a plakátolási szabályzatot
         paper_size_enum:
