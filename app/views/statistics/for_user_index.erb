@@ -1,4 +1,8 @@
 <div class="max-w-xl m-auto">
+  <div class="mb-4 flex justify-end">
+    <% export_params = params.permit(:fiscal_period_id, :start_at, :end_at).merge({format: :csv})%>
+    <%= authorized_link_to 'Export', for_users_statistics_path(export_params), class: 'btn' %>
+  </div>
   <%= form_with url: statistics_users_path, method: :get,
                 class: 'rounded-md bg-secondary py-4 px-4 mb-4 flex flex-col justify-between text-black gap-4 flex-wrap',
                 html: { 'data-controller': 'stat' },

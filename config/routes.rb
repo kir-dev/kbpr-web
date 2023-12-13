@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
   resources :statistics do
     get :for_groups, on: :collection
+    get :for_users, on: :collection
     get :for_group, on: :collection
     get :for_group_member, on: :collection
   end
