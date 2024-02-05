@@ -61,8 +61,8 @@ class StatisticsController < ApplicationController
           @users.each do |user, items_from_orders|
             line = [user.name]
             line << "soonTM"
-            items_from_orders.each do |item, quantity|
-              line << quantity
+            @items.each do |item|
+              line << items_from_orders[item]
             end
             csv << line
           end
