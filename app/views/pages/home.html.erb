@@ -21,7 +21,7 @@
       <%= image_tag 'main.svg', class: "mb-8" %>
       <div class="text-2xl text-center  mb-8"><%= random_text %></div>
       <div class="w-80 flex justify-center gap-4 mb-8">
-        <%= authorized_link_to 'KultúrWC', root_path, class: 'btn-outline' %>
+        <%= authorized_link_to 'KultúrWC', current_kwcs_path, class: 'btn-outline' %>
         <%= authorized_link_to 'Rendelés leadás', new_order_path, class: 'btn' %>
       </div>
     </div>
