@@ -59,7 +59,7 @@
     }
       
       .has-tooltip:hover .tooltip {
-        @apply visible float-start;
+        @apply visible;
       }
       
 
