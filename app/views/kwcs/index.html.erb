@@ -7,6 +7,7 @@
   <% else %>
     <div class="flex justify-between bg-secondary p-4 rounded-lg mb-4">
       <span class="font-bold">Név</span>
+      <span class="font-bold">Összesen: <%= @unique_room_count %></span>
       <span class="font-bold">Szobaszám</span>
     </div>
     <% @users.each do |user| %>
