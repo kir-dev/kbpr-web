@@ -38,3 +38,11 @@
 .idea/*
 /config/credentials/=development.key
 .env
+
+config/credentials/development.yml.enc
+./Gemfile.lock
+
+.gitignore
+config/*
+.postgres_password
+ötletek.md

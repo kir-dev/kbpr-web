@@ -7,6 +7,10 @@ class PagePolicy < ApplicationPolicy
     super
   end
 
+  def howto?
+    without_login?
+  end
+
   def profile?
     basic?
   end

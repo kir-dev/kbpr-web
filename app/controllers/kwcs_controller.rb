@@ -14,7 +14,12 @@ class KwcsController < ApplicationController
 
   def index
     @users = User.all.where(kwc: true).order(:room_number)
-    @unique_room_count = User.distinct.count(:room_number)
+    @unique_room_count = User.all.where(kwc: true).distinct.count(:room_number)
+  end
+
+  def reset
+    User.all.where(kwc: true).update(kwc: false)
+    redirect_to kwcs_path, notice: 'Szobaszámok sikeresen eltűntetve!'
   end
 
   private

@@ -21,10 +21,12 @@ Rails.application.routes.draw do
   resources :pages do
     get :admin, on: :collection
     get :profile, on: :collection
+    get :howto, on: :collection
   end
   resources :kwcs, only: [:index] do
     get :current, on: :collection
     patch :current, on: :collection, as: :update_current, to: 'kwcs#update_current'
+    patch :reset, on: :collection
   end
   resources :statistics do
     get :for_groups, on: :collection
