@@ -15,6 +15,7 @@
   <div id="orders" class="min-w-full mb-8">
     <% unless @orders.count.zero? %>
       <%= render @orders %>
+      <%= paginate @orders %>
     <% else %>
 
       <div class="mt-4">Nincs aktív megrendelés!</div>

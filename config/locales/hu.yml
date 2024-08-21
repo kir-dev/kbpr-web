@@ -209,3 +209,10 @@ hu:
       long: "%Y. %B %e., %A, %H:%M"
       short: "%b %e., %H:%M"
     pm: du.
+  views:
+    pagination:
+      first: "&laquo; Első"
+      last: "Utolsó &raquo;"
+      previous: "&lsaquo; Előző"
+      next: "Következő &rsaquo;"
+      truncate: "&hellip;"
