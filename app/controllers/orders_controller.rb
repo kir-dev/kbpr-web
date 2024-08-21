@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   def index
     search_attributes = {state: params.dig(:order, :state)|| :processing}
     @search_order = Order.new(search_attributes)
-    @orders = Order.where(search_attributes).order(finalized_at: :desc)
+    @orders = Order.where(search_attributes).order(finalized_at: :desc).page(params[:page])
   end
 
   def my_orders
