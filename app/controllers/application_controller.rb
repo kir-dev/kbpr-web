@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def  authorized_controller?
+  def authorized_controller?
     UNAUTHORIZED_CONTROLLERS.exclude?(controller_name)
   end
 
