@@ -10,4 +10,8 @@ class KwcPolicy < ApplicationPolicy
   def index?
     member?
   end
+  
+  def reset?
+    admin?
+  end
 end

@@ -3,6 +3,6 @@
 
   <%= render "form", group: @group %>
 
-  <%= authorized_link_to "Show this group", @group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= authorized_link_to "Back to groups", groups_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= authorized_link_to "Show this group", group_path(@group), class: "btn" %>
+  <%= authorized_link_to "Back to groups", groups_path, class: "btn" %>
 </div>

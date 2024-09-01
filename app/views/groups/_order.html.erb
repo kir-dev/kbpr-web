@@ -1,0 +1,86 @@
+<div id="<%= dom_id order %>" class="mt-6 bg-secondary rounded-md m-auto p-4">
+  <div class="row">
+    <h3 class="text-4xl mb-4"><%= order.group&.name %> rendelése</h3>
+  </div>
+  <div class="">
+    <p class="oneline">
+      <span>Állapot</span>
+      <strong>
+        <%= Order.human_enum_name(:states, order.state) %>
+      </strong>
+    </p>
+    <p class="row oneline ">
+      <span>Megrendelő</span>
+      <strong>
+        <%= order.user&.name %>
+      </strong>
+    </p>
+
+    <p class="row oneline">
+      <span>Leadás ideje</span>
+      <strong>
+        <%= I18n.l(order.finalized_at) if order.finalized_at %>
+      </strong>
+    </p>
+
+    <p class="row oneline">
+      <span>Megjegyzés</span>
+      <strong>
+        <%= order.comment.present? ? order.comment : '-' %>
+      </strong>
+    </p>
+
+    <p class="row oneline">
+      <span>Én nyomtatom</span>
+      <%= order.printed_by_me ? 'Igen' : 'Nem' %>
+    </p>
+    <p class="row oneline">
+      <span>Ár</span>
+      <%= order.total_price %> JMF
+    </p>
+    <% if order.completed_by.present? %>
+      <p class="row oneline">
+        <span>Elkészítette</span>
+        <%= order.completed_by.name %>
+      </p>
+    <% end %>
+  </div>
+  <h3 class="text-4xl my-6">Termékek</h3>
+  <% order.order_items.each do |order_item| %>
+    <div class=" bg-bg-dark rounded-md p-4 my-2">
+      <div class="flex justify-between items-center py-3">
+       <span class="text-2xl">
+         <%= order_item.item.name %>
+       </span>
+        <span class="text-2xl">
+         <%= order_item.quantity %> db
+       </span>
+      </div>
+      <% if order_item.item_id==1 %>
+        <div class="text-2xl mt-2">
+          <%= order_item.comment %>
+        </div>
+      <% end %>
+      <div class="flex justify-between items-end">
+       <span class="text-2xl border-2 border-primary">
+        <%= image_tag order_item.thumb_nail %>
+       </span>
+        <span class="text-2xl">
+         <%= link_to "Letöltés", rails_blob_path(order_item.order_image, disposition: 'attachment'),class: "btn" %>
+       </span>
+      </div>
+    </div>
+  <% end %>
+  <div class="row flex justify-end flex-wrap">
+    <% if action_name != "show" %>
+      <%= button_to "Törlés", order_path(order), method: :delete, form: { data: { turbo_confirm: 'Biztosan törlöd a rendelést?' } }, class: "btn mr-4 btn btn-outline" %>
+
+      <%= authorized_link_to 'Szerkesztés', edit_order_path(order), class: "btn btn-outline" if current_user.admin? %>
+    <% end %>
+  </div>
+  <div class="flex justify-center mt-8">
+    <% if order.state == "processing" && action_name == 'index' %>
+      <%= button_to "Kész", complete_order_path(order), form_class: 'w-full', class: "btn px-20 text-xl w-full" %>
+    <% end %>
+  </div>
+</div>

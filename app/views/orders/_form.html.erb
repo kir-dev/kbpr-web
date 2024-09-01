@@ -41,7 +41,16 @@
         <p>Elolvastam a <%= link_to 'plakátolási szabályzatot', '/plakatolasi_szabalyzat_2022.pdf', class: 'link',
                                     target: :_blank,  referrer_policy: 'no-referrer'%>
         </p>
-        <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád</p>
+        <div class="has-tooltip">
+          <p class="text-xs">Tényleg ne pipáld ki annélkül, hogy elolvasnád         
+            <%= image_tag 'tooltip-image.svg', class: 'tooltip-image' %>
+            <span class='tooltip rounded shadow-lg p-1 bg-bg-dark text-white -mt-8'>
+              Még akkor is, ha <b> saját </b> nyomtatás és nem plakát!
+              Ez igaz a következő pontokra is.
+            </span>
+          </p>
+        </div>
+        
       </div>
       <%= form.check_box :accepted_terms_of_service, class: "checkbox" %>
     </div>

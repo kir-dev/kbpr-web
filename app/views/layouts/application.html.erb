@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="page-container" class="relative min-h-screen">
-  <div id="content-wrap" class="pb-48 pt-4">
+  <div id="content-wrap" class="pb-56 pt-4">
     <div data-controller="navbar" class="max-w-7xl mx-auto">
       <nav class="flex justify-end gap-x-8 p-4 fixed top-0 w-full max-w-7xl bg-bg-dark z-10">
         <%= authorized_link_to root_path, class: 'mr-auto' do %>
@@ -21,7 +21,8 @@
         <% end %>
         <%= authorized_link_to "Rendelés leadás", new_order_path, class: 'nav-item' %>
         <%= authorized_link_to "KWC", current_kwcs_path, class: 'nav-item' %>
-        <%= authorized_link_to "Rólunk", root_path, class: 'nav-item' %>
+        <%# <%= authorized_link_to "Rólunk", root_path, class: 'nav-item' %> 
+        <%= authorized_link_to "Rendelési kisokos", howto_pages_path, class: 'nav-item' %>
         <%= authorized_link_to "Rendelések", orders_path, class: 'nav-item' %>
         <%= authorized_link_to "Admin panel", admin_pages_path, class: 'nav-item' %>
         <% if current_user.present? %>
@@ -45,8 +46,9 @@
           </div>
           <%= authorized_link_to "Rendelés leadás", new_order_path, class: 'mobile-nav-item' %>
           <%= authorized_link_to "KWC", current_kwcs_path, class: 'mobile-nav-item' %>
-          <%= authorized_link_to "Rólunk", root_path, class: 'mobile-nav-item' %>
+          <%# <%= authorized_link_to "Rólunk", root_path, class: 'mobile-nav-item' %> 
           <%= authorized_link_to "Rendelések", orders_path, class: 'mobile-nav-item' if member? %>
+          <%= authorized_link_to "Rendelési kisokos", howto_pages_path, class: 'nav-item' %>
           <%= authorized_link_to "Admin panel", admin_pages_path, class: 'mobile-nav-item' %>
           <% if current_user.present? %>
             <%= authorized_link_to 'Rendeléseim', my_orders_path, class: 'mobile-nav-item' %>
@@ -68,23 +70,26 @@
       </main>
     </div>
   </div>
-  <footer class="bg-secondary absolute w-full bottom-0 h-48">
+  <footer class="bg-secondary absolute w-full bottom-0 h-56">
     <div class="flex flex-col items-center max-w-7xl mx-auto mt-2">
       <div>
         <h2 class="text-center text-2xl font-bold">KBPR Csoport</h2>
         <h3 class="text-center text-xl">kbpr.sch.bme.hu</h3>
+        <a href="https://pek.sch.bme.hu/groups/87">
+          <h3 class="text-center text-l text-bold">Impresszum</h3>
+        </a>
       </div>
       <div class="flex items-center justify-between w-full px-4 gap-4">
         <a href="https://kir-dev.hu/" class="footer-link">
           <%= image_tag 'kir-dev-logo.svg', class: 'footer-image' %>
         </a>
-        <a href="https://schdesign.hu/">
+        <a href="https://schdesign.hu/" class="footer-link">
           <%= image_tag 'schdesign-logo.svg', class: 'footer-image' %>
         </a>
-        <a href="https://sch.bme.hu/">
+        <a href="https://sch.bme.hu/" class="footer-link">
           <%= image_tag 'schonherz-logo.svg', class: 'footer-image' %>
         </a>
-        <a href="/">
+        <a href="/" class="footer-link">
           <%= image_tag 'kbpr-logo.svg', class: 'footer-image' %>
         </a>
       </div>

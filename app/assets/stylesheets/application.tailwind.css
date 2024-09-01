@@ -46,6 +46,23 @@
         @apply w-16 md:w-28;
     }
 
+    .tooltip-image {
+        @apply w-4 inline;
+    }
+
+    .tooltip {
+        @apply invisible;
+      }
+
+    .has-tooltip {
+        @apply w-1 h-1 inline;
+    }
+      
+      .has-tooltip:hover .tooltip {
+        @apply visible;
+      }
+      
+
     .checkbox {
         @apply block mt-2 h-5 w-5 checked:bg-primary focus:ring-transparent focus:ring-offset-0 focus:checked:bg-primary hover:checked:bg-primary rounded-sm border-gray-200;
     }

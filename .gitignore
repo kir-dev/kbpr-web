@@ -38,3 +38,6 @@
 .idea/*
 /config/credentials/=development.key
 .env
+
+.postgres_password
+.vscode/*
