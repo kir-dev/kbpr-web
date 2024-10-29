@@ -1,2 +1,37 @@
-<iframe src="https://docs.google.com/document/d/e/2PACX-1vSMUleqgKYQnym62aY1qb8z0wStBck63vVjRLtvMjRvVd7Bws6ECN_5-MYoJkTMq4mnpbc622oKILrV/pub?embedded=true"
-class = "h-screen m-0 p-0 w-full h-full"></iframe>
+<% if current_user.present? %>
+
+<%= link_to 'Plakátolási szabályzat.pdf', '/plakatolasi_szabalyzat_2024.pdf', class: 'link',
+                                    target: :_blank,  referrer_policy: 'no-referrer'%>
+
+                                    <br>
+<p> 
+    Maga a szabáylzat, ami alapján a plakátokat <strong>kell</strong> készíteni és plakátolni.
+</p>
+
+                                    <br>
+
+<%= link_to 'Arculati kézikönyv.pdf', '/Arculati_Kezikonyv.pdf', class: 'link',
+                                    target: :_blank,  referrer_policy: 'no-referrer'%>
+
+                                    <br>
+
+<p> 
+    A Schönherz Kollégium Arculati kézikönyve. A Schönherz logó használatára vonatkozó szabályokat tartalmazza.
+</p>
+
+                                    <br>
+
+<% end %>
+
+<%= link_to 'Rendelési Kisokos.pdf', '/rendelesi_kisokos.pdf', class: 'link',
+                                    target: :_blank,  referrer_policy: 'no-referrer'%>
+
+                                    <br>
+
+<%= link_to 'Rendelési Kisokos', 'https://docs.google.com/document/d/1IdK2OnIev1RWeoOnaZEJdLpuLQfjkD0_DoUjxGylit8/edit?usp=sharing', class: 'link',
+                                    target: :_blank,  referrer_policy: 'no-referrer'%>
+
+                                    <br>
+<p> 
+    Dokumentum, ami végig vezet téged a rendelés leadásának folyamatán, lépésről lépésre.
+</p>
