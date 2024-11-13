@@ -16,7 +16,7 @@
     <% @users.each do |user| %>
       <div class="flex justify-between bg-secondary p-4 rounded-lg mb-4">
         <span><%= user.name %></span>
-        <span><%= user.room_number %></span>
+        <span><%= "%03d" % user.room_number %></span>
       </div>
     <% end %>
   <% end %>
