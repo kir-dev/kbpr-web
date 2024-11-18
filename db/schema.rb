@@ -132,27 +132,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_18_090610) do
     t.string "uid"
     t.integer "room_number"
     t.boolean "kwc"
-    t.boolean "member", default: true
-    t.string "role", default: "member"
+    t.boolean "member", default: false
+    t.string "role", default: "basic"
     t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  create_table "vote_questions", force: :cascade do |t|
-    t.string "title"
-    t.datetime "end_at", null: false
-    t.datetime "start_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "vote_question_id", null: false
-    t.boolean "vote_type", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_votes_on_user_id"
-    t.index ["vote_question_id"], name: "index_votes_on_vote_question_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
