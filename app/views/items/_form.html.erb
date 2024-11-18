@@ -21,6 +21,11 @@
     <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full text-black" %>
   </div>
 
+   <div class="my-5">
+    <%= form.label :munkapont_weight, 'Munkapont' %>
+    <%= form.number_field :munkapont_weight, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full text-black" %>
+  </div>
+
   <div class="my-5">
     <%= form.label :available, 'Rendelhető' %>
     <%= form.check_box :available, class: "checkbox" %>
