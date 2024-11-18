@@ -12,6 +12,8 @@ gem "sprockets-rails"
 
 gem "kaminari"
 
+gem "rubyzip"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

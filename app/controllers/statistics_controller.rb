@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
   require 'csv'
+  require 'zip'
   before_action :set_fiscal_period, only: [:for_groups, :for_user_index, :for_user, :for_users]
 
   def for_groups
@@ -38,8 +39,31 @@ class StatisticsController < ApplicationController
   end
 
   def for_users
+    zip_data = Zip::OutputStream.write_buffer do |zip|
+      # Generate CSV for printed_by_me: false
+      csv_others = for_users_csv(false)
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_others_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_nem_saját.csv")
+      zip.write csv_others
+
+      # Generate CSV for printed_by_me: true
+      csv_mine = for_users_csv(true)
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_mine_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_saját.csv")
+      zip.write csv_mine
+
+      # Generate CSV for all users
+      csv_all = for_all_users_csv
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_all_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv")
+      zip.write csv_all
+    end
+
+    send_data zip_data.string, 
+              filename: "kbpr_egyéni_nyomtatások_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.zip",
+              type: 'application/zip'
+  end
+
+  def for_users_csv(printed_by_me)
     @order_items = OrderItem.joins(:order).includes(order: :group)
-                            .where(orders: { state: :complete })
+                            .where(orders: { state: :complete, printed_by_me: printed_by_me })
                             .where('orders.finalized_at BETWEEN :start and :end',
                                    start: @fiscal_period.start_at.beginning_of_day,
                                    end: @fiscal_period.end_at.end_of_day)
@@ -51,23 +75,46 @@ class StatisticsController < ApplicationController
       @users[user][item] ||= 0
       @users[user][item] = @users[user][item] + order_item.quantity
     end
-    file_name = "kbpr_egyéni_nyomtatások_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv"
-    respond_to do |format|
-      format.html
-      format.csv do
-        csv = CSV.generate do |csv|
-          @items = Item.all
-          csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
-          @users.each do |user, items_from_orders|
-            line = [user.name]
-            line << "soonTM"
-            @items.each do |item|
-              line << items_from_orders[item]
-            end
-            csv << line
-          end
+    #file_name = "kbpr_egyéni_nyomtatások_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_#{printed_by_me ? "Saját" : "Nem saját"}.csv"
+    CSV.generate do |csv|
+      @items = Item.all
+      csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
+      @users.each do |user, items_from_orders|
+        line = [user.name]
+        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_i
+        @items.each do |item|
+          line << items_from_orders[item]
         end
-        send_data csv, disposition: "attachment; filename=#{file_name}"
+        csv << line
+      end
+    end
+  end
+
+  def for_all_users_csv
+    @order_items = OrderItem.joins(:order).includes(order: :group)
+                            .where(orders: { state: :complete})
+                            .where('orders.finalized_at BETWEEN :start and :end',
+                                   start: @fiscal_period.start_at.beginning_of_day,
+                                   end: @fiscal_period.end_at.end_of_day)
+    @users = {}
+    @order_items.each do |order_item|
+      user = order_item.order.completed_by
+      item = order_item.item
+      @users[user] ||= {}
+      @users[user][item] ||= 0
+      @users[user][item] = @users[user][item] + order_item.quantity
+    end
+    #file_name = "kbpr_egyéni_nyomtatások_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_#{printed_by_me ? "Saját" : "Nem saját"}.csv"
+    CSV.generate do |csv|
+      @items = Item.all
+      csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
+      @users.each do |user, items_from_orders|
+        line = [user.name]
+        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_i
+        @items.each do |item|
+          line << items_from_orders[item]
+        end
+        csv << line
       end
     end
   end
