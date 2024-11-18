@@ -42,17 +42,17 @@ class StatisticsController < ApplicationController
     zip_data = Zip::OutputStream.write_buffer do |zip|
       # Generate CSV for printed_by_me: false
       csv_others = for_users_csv(false)
-      zip.put_next_entry("kbpr_egyéni_nyomtatások_others_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_nem_saját.csv")
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_nem_saját_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv")
       zip.write csv_others
 
       # Generate CSV for printed_by_me: true
       csv_mine = for_users_csv(true)
-      zip.put_next_entry("kbpr_egyéni_nyomtatások_mine_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}_saját.csv")
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_saját_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv")
       zip.write csv_mine
 
       # Generate CSV for all users
       csv_all = for_all_users_csv
-      zip.put_next_entry("kbpr_egyéni_nyomtatások_all_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv")
+      zip.put_next_entry("kbpr_egyéni_nyomtatások_összes_#{@fiscal_period.start_at.strftime('%F')}_#{@fiscal_period.end_at.strftime('%F')}.csv")
       zip.write csv_all
     end
 
@@ -81,7 +81,7 @@ class StatisticsController < ApplicationController
       csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
       @users.each do |user, items_from_orders|
         line = [user.name]
-        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_i
+        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_f
         @items.each do |item|
           line << items_from_orders[item]
         end
@@ -110,7 +110,7 @@ class StatisticsController < ApplicationController
       csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
       @users.each do |user, items_from_orders|
         line = [user.name]
-        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_i
+        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_f
         @items.each do |item|
           line << items_from_orders[item]
         end
