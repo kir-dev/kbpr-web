@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_152041) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_26_183816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,7 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_152041) do
     t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
-    t.integer "room_number"
+    t.string "room_number"
     t.boolean "kwc"
     t.boolean "member", default: false
     t.string "role", default: "basic"
