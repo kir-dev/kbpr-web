@@ -81,7 +81,7 @@ class StatisticsController < ApplicationController
       csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
       @users.each do |user, items_from_orders|
         line = [user.name]
-        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_f
+        line << items_from_orders.sum { |item, quantity| item.point * quantity }.to_f
         @items.each do |item|
           line << items_from_orders[item]
         end
@@ -110,7 +110,7 @@ class StatisticsController < ApplicationController
       csv << ['Név','Összesen nyomtatva'] + @items.pluck(:name)
       @users.each do |user, items_from_orders|
         line = [user.name]
-        line << items_from_orders.sum { |item, quantity| item.munkapont_weight * quantity }.to_f
+        line << items_from_orders.sum { |item, quantity| item.point * quantity }.to_f
         @items.each do |item|
           line << items_from_orders[item]
         end
