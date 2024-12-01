@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_152041) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_26_210143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_152041) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
+    t.decimal "munkapont_weight", precision: 5, scale: 3, default: "1.0"
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "url"
+    t.string "slug"
+    t.integer "clicks", default: 0
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "enabled", default: true
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -131,8 +142,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_152041) do
     t.string "uid"
     t.integer "room_number"
     t.boolean "kwc"
-    t.boolean "member", default: false
-    t.string "role", default: "basic"
+    t.boolean "member", default: true
+    t.string "role", default: "member"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

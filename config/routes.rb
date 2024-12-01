@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :funky_texts
+  resources :links
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :users, except: :destroy
@@ -37,5 +38,7 @@ Rails.application.routes.draw do
 
   get '/statistics_users', to: 'statistics#for_user_index', as: :statistics_users
   get '/statistics_users/:user_id/:fiscal_period_id', to: 'statistics#for_user', as: :statistics_for_user
+  
+  get '/short/:slug', to: 'links#visit', as: :short
   root "pages#home"
 end
