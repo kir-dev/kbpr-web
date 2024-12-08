@@ -150,7 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_26_210143) do
     t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
-    t.integer "room_number"
+    t.string "room_number"
     t.boolean "kwc"
     t.boolean "member", default: true
     t.string "role", default: "member"
