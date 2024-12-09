@@ -152,8 +152,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_26_210143) do
     t.string "uid"
     t.string "room_number"
     t.boolean "kwc"
-    t.boolean "member", default: true
-    t.string "role", default: "member"
+    t.boolean "member", default: false
+    t.string "role", default: "basic"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
