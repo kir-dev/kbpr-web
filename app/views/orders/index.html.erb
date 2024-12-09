@@ -7,8 +7,30 @@
 
       <div class="my-5">
         <%= form.label :state, class: 'text-xl' %>
-        <%= form.select :state, Order.states.values.map { |status| [Order.human_enum_name(:states, status), status] }, { prompt: "-- Válaszd ki a köröd! --" }, class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        <%= form.select :state, Order.states.values.map { |status| [Order.human_enum_name(:states, status), status] },
+          { prompt: "-- Válaszd ki a köröd! --" },
+          class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
       </div>
+      
+      <div class="my-5">
+        <%= form.label :completed_by_id, 'Elkészítette', class: 'text-xl' %>
+        <%= form.checkbox  :completed_by_id %>
+        <%= form.select :completed_by_id, User.order(:name).map { |user| [user.name, user.id] },
+          { prompt: "-- Válaszd ki a felhasználót! --" },
+          class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full",
+          disabled: !params[:completed_by_id].present? %>
+        <% if !params[:completed_by_id].present? %>
+          <%= hidden_field_tag 'order[completed_by_id]', '' %>
+        <% end %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :item_id, 'Termék típus', class: 'text-xl' %>
+        <%= form.select :item_id, Item.order(:name).map { |item| [item.name, item.id] },
+          { prompt: "-- Válaszd ki a termék típusát! --" },
+          class: "text-bg-dark block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
+      </div>
+
       <%= form.submit 'Szűrés', class: 'btn px-16 text-xl' %>
     <% end %>
   </div>

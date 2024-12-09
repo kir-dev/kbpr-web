@@ -4,9 +4,20 @@ class OrdersController < ApplicationController
   # skip_before_action :basic_authorization, only: [:finalize, :update]
   # GET /orders or /orders.json
   def index
-    search_attributes = {state: params.dig(:order, :state)|| :processing}
+    search_attributes = {state: params.dig(:order, :state)|| :processing,}
     @search_order = Order.new(search_attributes)
-    @orders = Order.where(search_attributes).order(finalized_at: :desc).page(params[:page])
+    @orders = Order.joins(order_items: :item)
+                   .where(search_attributes)
+
+    if params[:item_id].present?
+      @orders = @orders.where(order_items: { item_id: params.dig(:order, :item_id) })
+    end
+
+    if params[:completed_by_id].present?
+      @orders = @orders.where(completed_by_id: { completed_by_id: params.dig(:order, :completed_by_id) })
+    end
+
+    @orders = @orders.order(finalized_at: :desc).page(params[:page])
   end
 
   def my_orders
