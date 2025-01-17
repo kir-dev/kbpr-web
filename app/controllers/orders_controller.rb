@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
       @orders = @orders.where(group_id: params.dig(:order, :group_id) )
     end
 
-    @orders = @orders.order(finalized_at: :desc).page(params[:page])
+    @orders = @orders.order(finalized_at: :desc).distinct().page(params[:page])
   end
 
   def my_orders
