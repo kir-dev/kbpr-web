@@ -97,16 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_26_210143) do
     t.boolean "enabled", default: true
   end
 
-  create_table "links", force: :cascade do |t|
-    t.string "url"
-    t.string "slug"
-    t.integer "clicks", default: 0
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "enabled", default: true
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "item_id", null: false
