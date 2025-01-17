@@ -8,7 +8,7 @@ class Link < ApplicationRecord
   validates :slug, length: { in: 3..255 , message: "too long"}, on: :create
 
   def short
-    Rails.application.routes.url_helpers.short_url(slug: self.slug, host: 'www.noeyouth.eu', protocol: 'https')
+    Rails.application.routes.url_helpers.short_url(slug: self.slug, host: 'www.kbpr.sch.bme.hu', protocol: 'https')
   end
   
 end
