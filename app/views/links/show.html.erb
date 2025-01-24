@@ -1,0 +1,12 @@
+<div class="mx-auto w-full">
+  <div class="mx-auto">
+    <%= render @link %>
+
+    <div class="flex items-center gap-4 mb-8" style="flex-wrap: wrap">
+      <%= authorized_link_to 'Vissza a linkekhez', links_path, class: "btn-outline" %>
+      <%= authorized_link_to 'Szerkesztés', edit_link_path(@link), class: 'btn' %>
+      <%= button_to 'Törlés', link_path(@link), method: :delete, class: "btn-red",
+                    form_class: 'inline ml-auto' %>
+    </div>
+  </div>
+</div>

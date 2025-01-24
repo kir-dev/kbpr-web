@@ -1,0 +1,37 @@
+<%= form_with(model: link, class: "contents bg-primary") do |form| %>
+  <% if link.errors.any? %>
+    <div id="error_explanation" class="error-explanation">
+      <h2><%= pluralize(link.errors.count, "error") %> prohibited this text from being saved: </h2>
+
+      <ul>
+        <% link.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <%= form.label :title, class: 'label' %>
+    <%= form.text_field :title, class: "text-area" %>
+  </div>
+
+  <div class="row">
+    <%= form.label :slug, class: 'label' %>
+    <%= form.text_field :slug, class: "text-area" %>
+  </div>
+
+  <div class="row">
+    <%= form.label :url, class: 'label' %>
+    <%= form.text_field :url, class: "text-area" %>
+  </div>
+
+  <div class = "row">
+    <%= form.label :enabled, class: 'label' %>
+    <%= form.check_box :enabled, class: "check-box" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn" %>
+  </div>
+<% end %>

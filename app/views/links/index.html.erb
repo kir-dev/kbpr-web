@@ -1,0 +1,10 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl mb-12">Aktív linkek</h1>
+    <%= authorized_link_to 'Új link', new_link_path, class: "btn" %>
+  </div>
+
+  <div id="links" class="min-w-full">
+    <%= render @links %>
+  </div>
+</div>

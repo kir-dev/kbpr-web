@@ -216,3 +216,5 @@ hu:
       previous: "&lsaquo; Előző"
       next: "Következő &rsaquo;"
       truncate: "&hellip;"
+    links:
+      disabled_title: "Ez a link jelenleg ki van kapcsolva"
