@@ -43,7 +43,7 @@ class OrderItem < ApplicationRecord
       return
     end
 
-    unless order_image.blob.byte_size <= 10.megabyte
+    unless order_image.blob.byte_size <= 50.megabyte
       errors.add(:order_image, "túl nagy")
     end
 
