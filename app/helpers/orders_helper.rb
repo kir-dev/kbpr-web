@@ -13,5 +13,9 @@ module OrdersHelper
                 return
             end
         end
+
+    rescue StandardError => e
+        Rails.logger.error("#{e.class}: #{e.message}")
+        Rails.logger.error(e.backtrace.join("\n"))
     end
 end
